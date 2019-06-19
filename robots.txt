@@ -1,0 +1,71 @@
+User-agent: Yandex
+Allow: *
+Disallow: /.idea/
+Disallow: /cms/
+Disallow: /node_modules/
+Disallow: /uploads/
+
+User-agent: Googlebot
+Allow: *.css
+Allow: *.js
+Allow: *
+Disallow: /.idea/
+Disallow: /cms/
+Disallow: /node_modules/
+Disallow: /uploads/
+
+User-agent: Slurp
+Allow: *
+Disallow: /.idea/
+Disallow: /cms/
+Disallow: /node_modules/
+Disallow: /uploads/
+
+User-agent: StackRambler
+Allow: *
+Disallow: /.idea/
+Disallow: /cms/
+Disallow: /node_modules/
+Disallow: /uploads/
+
+User-agent: Scooter
+Allow: *
+Disallow: /.idea/
+Disallow: /cms/
+Disallow: /node_modules/
+Disallow: /uploads/
+
+User-agent: Yahoo-MMCrawler
+Allow: *
+Disallow: /.idea/
+Disallow: /cms/
+Disallow: /node_modules/
+Disallow: /uploads/
+
+User-agent: Googlebot-Image
+Allow: *
+Disallow: /.idea/
+Disallow: /cms/
+Disallow: /node_modules/
+Disallow: /uploads/
+
+User-agent: zombies
+Disallow: /brains
+
+User-agent: *
+Allow: *
+Disallow: /?from=2Psk.ru
+Disallow: /?from=2psk.ru
+Disallow: /.idea/
+Disallow: /cms/
+Disallow: /node_modules/
+Disallow: /uploads/
+Disallow: /package.json
+Disallow: /index.php
+Disallow: /gulpfile.js
+Disallow: /configuration.php
+Disallow: /.gitignore
+Disallow: /.bowerrc
+
+Host: https://www.dompereezdov.ru
+Sitemap: https://www.dompereezdov.ru/sitemap.xml

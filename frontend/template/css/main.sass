@@ -1,0 +1,1229 @@
+*
+  margin: 0px
+  padding: 0px
+  box-sizing: border-box
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  outline: medium none !important
+
+=transition
+  -webkit-transition: all 0.2s ease-out 0s, filter 0.4s ease, border-color 0.4s ease
+  -moz-transition: all 0.2s ease-out 0s, filter 0.4s ease, border-color 0.4s ease
+  -o-transition: all 0.2s ease-out 0s, filter 0.4s ease, border-color 0.4s ease
+  transition: all 0.2s ease-out 0s, filter 0.4s ease, border-color 0.4s ease
+
+=transform($value)
+  -moz-transform: $value
+  -ms-transform: $value
+  -webkit-transform: $value
+  -o-transform: $value
+  transform: $value
+
+=border-radius($value)
+  border-radius: $value
+  -moz-border-radius: $value
+  -webkit-border-radius: $value
+
+=border-top-right-radius($value)
+  border-top-right-radius: $value
+  -moz-border-radius-top-right: $value
+  -webkit-border-top-right-radius: $value
+
+=border-bottom-right-radius($value)
+  border-bottom-right-radius: $value
+  -moz-border-radius-bottom-right: $value
+  -webkit-border-bottom-right-radius: $value
+
+=border-top-left-radius($value)
+  border-top-left-radius: $value
+  -moz-border-radius-top-left: $value
+  -webkit-border-top-left-radius: $value
+
+=border-bottom-left-radius($value)
+  border-bottom-left-radius: $value
+  -moz-border-radius-bottom-left: $value
+  -webkit-border-bottom-left-radius: $value
+
+=animationDelay($value)
+  -webkit-animation-delay: $value
+  -moz-animation-delay: $value
+  -o-animation-delay: $value
+  animation-delay: $value
+
+=box-shadow($value)
+  -webkit-box-shadow: $value
+  -moz-box-shadow: $value
+  box-shadow: $value
+
+=size($width,$height)
+  width: $width
+  height: $height
+
+=background-image($img)
+  background-image: $img
+
+=opacity($value)
+  opacity: $value
+
+=noselect()
+  -moz-user-select: -moz-none
+  -o-user-select: none
+  -khtml-user-select: none
+  -webkit-user-select: none
+  user-select: none
+
+=link($color, $color-hover)
+  outline: none
+  cursor: pointer
+  +transition
+  color: $color
+  &:hover
+    color: $color-hover
+
+=clearfix
+  clear: both
+
+=tar
+  text-align: right
+
+.tar
+  text-align: right
+
+.clearfix
+  clear: both
+
+table
+  border-collapse: collapse
+  border-spacing: 0px
+
+.dt
+  display: table
+
+.dn
+  display: none
+
+.r
+  float: right
+
+.npr
+  padding-right: 0px
+
+@font-face
+  font-family: 'Open Sans'
+  src: local('Open Sans'), local('OpenSans'), url('/frontend/template/fonts/opensans.woff2') format('woff2'), url('/frontend/template/fonts/opensans.woff') format('woff'), url('/frontend/template/fonts/opensans.ttf') format('truetype')
+  font-weight: 400
+  font-style: normal
+
+//@font-face
+//  font-family: 'Open Sans Semibold'
+//  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url('/frontend/template/fonts/opensanssemibold.woff2') format('woff2'), url('/frontend/template/fonts/opensanssemibold.woff') format('woff'), url('/frontend/template/fonts/opensanssemibold.ttf') format('truetype')
+//  font-weight: 600
+//  font-style: normal
+
+@font-face
+  font-family: 'Open Sans Bold'
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('/frontend/template/fonts/opensansbold.woff2') format('woff2'), url('/frontend/template/fonts/opensansbold.woff') format('woff'), url('/frontend/template/fonts/opensansbold.ttf') format('truetype')
+  font-weight: 700
+  font-style: normal
+
+$blue: #0194CA
+$blue_hover: #0C9CD0
+$blue_text: #C6E7F4
+$blue_phones: #004660
+$blue_hover_2: #0B9CA1
+
+$yellow: #004660
+$black: #333
+$gray: #808080
+$bg: #fafafa
+$selection_color_browser: #3BCCFF
+
+::selection
+  background: $selection_color_browser
+
+::-moz-selection
+  background: $selection_color_browser
+
+a
+  &:hover
+    color: $blue_hover_2
+    text-decoration: none !important
+
+// a[href^=tel]
+//     color: #fff
+
+.backlink
+  padding: 10px 20px
+  font-size: 25px
+  &:hover
+    background: $blue_text
+    +transition
+    color: #000 !important
+
+body
+  font-weight: 400
+  font-family: 'Open Sans'
+  font-style: normal
+  line-height: 1.428571428571429
+  margin: 0px
+  padding: 0px
+  position: relative
+  font-size: 14px
+  color: $black
+
+  .but
+    display: table
+    background: $yellow
+    color: #fff
+    text-align: center
+    margin: 0 auto
+    padding: .8rem 4rem
+    border-radius: 3px
+    border-bottom: 4px solid #0085B7
+    text-transform: uppercase
+    cursor: pointer
+    float: left
+    &:hover
+      +transition
+      background: $black
+      color: #fff
+      border-bottom: 4px solid $gray
+
+section
+  overflow: hidden
+
+div, section, header, footer, p, span, ul, li, ol, nav, h1, h2, h3
+  box-sizing: border-box
+  margin: 0px
+  padding: 0px
+
+.clear
+  clear: both
+  float: none
+
+.notd
+  text-decoration: none !important
+
+a
+  +transition
+
+header
+  #top
+    padding: 15px 0px
+  .phones
+    display: table
+    float: right
+    .phone
+      color: $blue_phones
+      font-family: 'Open Sans Bold'
+      font-weight: bold
+      font-size: 22px
+      float: left
+      margin-right: 25px
+      &.last_phone
+        margin-right: 0
+  #menu
+    background: $blue
+    width: 100%
+    display: block
+    margin-bottom: 30px
+    min-height: 45px
+    li
+      a
+        color: $blue_text
+        &:hover
+          color: #fff !important
+  .navbar
+    min-height: 40px
+    border: 0px
+    background: none !important
+    margin-bottom: 0
+    margin-top: 0
+    .navbar-collapse
+      padding-right: 0px !important
+      padding-left: 0px !important
+    ul
+      li
+        +transition
+        &:hover
+          background: $blue_hover !important
+        &.last
+          padding-right: 0 !important
+        a
+          +transition
+          background: none !important
+          padding: 13px 24px
+          color: $blue_text !important
+          text-transform: uppercase
+          font-size: 14px
+        &.active
+          background: $blue_hover !important
+  .bar1, .bar2, .bar3
+    width: 35px
+    height: 5px
+    background-color: #333
+    margin: 6px 0
+    transition: 0.4s
+  /* Rotate first bar */
+  .change .bar1
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px)
+    transform: rotate(-45deg) translate(-9px, 6px)
+  /* Fade out the second bar */
+  .change .bar2
+    opacity: 0
+  /* Rotate last bar */
+  .change .bar3
+    -webkit-transform: rotate(45deg) translate(-8px, -8px)
+    trasform: rotate(45deg) translate(-8px, -8px)
+
+.page
+  min-height: 755px
+  float: right
+  h1
+    font-size: 18px
+    text-transform: uppercase
+    margin-bottom: 20px
+  h3
+    text-transform: uppercase
+    font-size: 16px
+    margin-bottom: 20px
+  h2
+    font-size: 17px
+    text-transform: uppercase
+    margin-bottom: 20px
+  .pohojie_uslugi
+    li
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIE1hY2ludG9zaCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCNDU3MDFEOEU5MjQxMUUxQUU2RkNDRkYxOTg0MkM2NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCNDU3MDFEOUU5MjQxMUUxQUU2RkNDRkYxOTg0MkM2NCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkI0NTcwMUQ2RTkyNDExRTFBRTZGQ0NGRjE5ODQyQzY0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkI0NTcwMUQ3RTkyNDExRTFBRTZGQ0NGRjE5ODQyQzY0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+9KG12QAAADVJREFUeNpUjNsJADAMArXDOlSWtSl5QAV/7lDaRkQYACXh5aDCrFN+cMXCnrlFwfmcyRVgAB1XD9WfN2IDAAAAAElFTkSuQmCC') no-repeat scroll 1px center rgba(0, 0, 0, 0)
+      list-style: none outside none
+      margin: 0 0 2px
+      padding: 0 0 0 10px
+      text-align: left
+      a
+        text-transform: none
+  .mini-breadcumb
+    a
+      display: table
+  .text
+    ul
+      list-style-type: disc
+      margin-left: 25px
+      margin-bottom: 12px
+    p
+      margin-bottom: 15px
+    b, strong
+      font-family: 'Open Sans'
+      font-weight: 600 !important
+    table
+      width: 100%
+      background: #ececec
+      border: 1px solid #bbbbbb
+      margin-bottom: 20px
+      th
+        background: #2E3D4A
+        border-right: 1px solid #c8c7c7
+        color: #fff
+        padding: 10px
+        font-weight: bold
+        font-size: 13px
+      td
+        background: #FFF
+        color: #555
+        text-align: left
+        padding: 10px
+        border: 1px solid #DBDBDB
+      tr
+        &:hover
+          td
+            background: #DFF7FF
+      strong
+        font-weight: bold
+        font-size: 14px
+
+#service_block
+  li
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIE1hY2ludG9zaCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCNDU3MDFEOEU5MjQxMUUxQUU2RkNDRkYxOTg0MkM2NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCNDU3MDFEOUU5MjQxMUUxQUU2RkNDRkYxOTg0MkM2NCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkI0NTcwMUQ2RTkyNDExRTFBRTZGQ0NGRjE5ODQyQzY0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkI0NTcwMUQ3RTkyNDExRTFBRTZGQ0NGRjE5ODQyQzY0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+9KG12QAAADVJREFUeNpUjNsJADAMArXDOlSWtSl5QAV/7lDaRkQYACXh5aDCrFN+cMXCnrlFwfmcyRVgAB1XD9WfN2IDAAAAAElFTkSuQmCC") no-repeat scroll 1px transparent
+    list-style: none outside none
+    margin: 0 0 2px
+    padding: 0 0 0 10px
+    text-align: left
+
+#top_image
+  background: url('/frontend/template/images/head3.jpg') no-repeat center center
+  margin-top: -30px
+  p
+    text-align: left
+    margin-left: 25px
+    color: #fff
+    font-size: 30px
+    line-height: 120%
+    padding: 15px
+    margin: 95px 0px
+    font-family: 'Open Sans Bold'
+    position: relative
+    display: table
+    z-index: 2
+    text-shadow: .05em .05em 0 rgba(0, 0, 0, .42)
+    &:before
+      content: ''
+      position: absolute
+      top: 0
+      right: 0
+      //background: #000
+      height: 100%
+      width: 1200px
+      opacity: 0.2
+      z-index: -1
+
+.homeblock
+  margin-bottom: 0px
+  +border-radius(5px)
+  //border: 1px solid $blue_hover
+  overflow: hidden
+  padding: 0
+  .top
+    padding: 15px 20px
+    background: #20a8da
+    color: #fff
+    h3
+      display: block
+      margin-top: 0 !important
+      margin-bottom: 0 !important
+      width: 100%
+      font-family: "Open Sans Bold"
+      font-size: 20px
+      color: #fff
+      text-transform: uppercase
+    p
+      margin: 15px 0px
+      margin-bottom: 20px
+      margin-top: 0
+  .bottom
+    padding: 15px 20px
+    background: #20a8da
+    color: #fff
+    padding-bottom: 30px
+    position: relative
+    min-height: 180px
+    font-size: 15px
+    line-height: 18px
+    a
+      color: #fff
+      text-decoration: underline
+      &:hover
+        color: $blue_phones
+    .but
+      position: absolute
+      display: table
+      margin: 0 auto
+      bottom: 20px
+      left: 20px
+  .img
+    height: 210px
+    width: 100%
+    background-size: 100% !important
+
+#contact_us
+  input, textarea
+    width: 100%
+    border: 1px solid #ddd
+    padding: 7px
+    +border-radius(2px)
+    background: #ffffff
+  .necess
+    color: #f00
+  label
+    margin-top: 15px
+    color: #333
+    font-family: 'Open Sans'
+    font-size: 13px
+    font-weight: 400 !important
+    margin-bottom: 0px
+  .p
+    font-size: 12px
+    opacity: 0.6
+  .phone
+    display: block
+    width: 72%
+  .sender
+    +border-radius(3px)
+    +transition
+    margin: 0 5px 5px 0
+    font-size: 13px
+    line-height: 13px
+    padding: 8px 15px
+    border: 1px solid #DDD
+    background-color: #F9F9F9
+    box-shadow: 0px 1px 1px 0px rgba(180, 180, 180, 0.2)
+    display: table
+    margin-top: 10px
+    cursor: pointer
+    &:hover
+      background: #1BA9DD
+      color: #fff
+      border: 1px solid #0194CA
+  .result-text
+    font-size: 16px
+    text-align: center
+    padding-top: 40px
+    padding-bottom: 40px
+
+
+
+.form
+  border: 1px solid #ccc
+  margin-bottom: 20px
+  +border-top-left-radius(5px)
+  +border-top-right-radius(5px)
+  .from-name
+    background: $blue
+    color: #fff
+    border: 1px solid $blue
+    text-indent: 10px
+    width: 100%
+    padding: 3px 0px
+    +border-top-left-radius(5px)
+    +border-top-right-radius(5px)
+  .form-content
+    padding: 10px
+  .explanation
+    display: block
+    width: 100%
+    font-size: 12px
+    margin-bottom: 17px
+    margin-top: 3px
+    color: #999
+  .input-title
+    margin-bottom: 3px
+    span
+      color: red
+  textarea, input:not([type="checkbox"])
+    padding: 2px 5px
+    width: 100%
+  input[type=checkbox]
+    float: left
+    margin-right: 5px
+  .check
+    margin-bottom: 15px
+  label
+    font-family: 'Open Sans'
+    font-weight: 400 !important
+  .sender
+    +border-radius(3px)
+    +transition
+    margin: 0 5px 5px 0
+    font-size: 13px
+    line-height: 13px
+    padding: 8px 15px
+    border: 1px solid #0194CA
+    background: #1BA9DD
+    box-shadow: 0px 1px 1px 0px rgba(180, 180, 180, 0.2)
+    display: table
+    margin-top: 10px
+    cursor: pointer
+    color: #fff
+    &:hover
+      background: #bbb
+      color: #fff
+      border: 1px solid #aaa
+
+#zakaz
+  .modal-content
+    background: #20a8da
+    color: #fff
+  h4
+    text-transform: uppercase
+  p
+    margin-bottom: 20px
+  input
+    width: 100%
+    border: 1px solid #ddd
+    padding: 7px
+    +border-radius(2px)
+    background: #ffffff
+    margin-bottom: 10px
+    color: #000000
+  .btn
+    +border-radius(3px)
+    +transition
+    margin: 0 5px 5px 0
+    font-size: 15px
+    line-height: 13px
+    padding: 8px 15px
+    border: 1px solid #DDD
+    background: #1BA9DD
+    box-shadow: 0px 1px 1px 0px rgba(180, 180, 180, 0.2)
+    margin-top: 10px
+    cursor: pointer
+    display: table
+    margin: 0 auto
+    background: $blue_phones
+    color: #fff
+    border: 1px solid $blue_phones
+    &:hover
+      background: #333
+  .modal-footer
+    border: 0px
+    margin-bottom: 0px
+    padding-bottom: 5px
+  .result-text
+    text-align: center
+    padding: 30px 0px
+
+.btable
+  //background: url('/frontend/template/images/table1.jpg') no-repeat 0px 0px !important
+  background: $blue !important
+  width: 100% !important
+  border: 0 !important
+  height: auto !important
+  img
+    width: 93% !important
+    height: auto !important
+    margin: 5px
+
+  td
+    color: #fff !important
+    border: 0px !important
+    background: none !important
+    padding: 0px !important
+  tr
+    td
+      height: 33%
+    &:nth-child(1)
+      td
+        &:nth-child(1)
+          width: 50% !important
+        &:nth-child(2)
+          font-size: 25px !important
+          border-bottom: 2px solid $blue_text !important
+          height: 11%
+          padding-top: 15px !important
+          text-transform: uppercase
+    &:nth-child(3)
+      td
+        &:nth-child(1)
+          font-size: 25px !important
+          b, strong
+            font-family: 'Open Sans Bold'
+            font-size: 35px !important
+    &:nth-child(2)
+      td
+        &:nth-child(1)
+          font-family: 'Open Sans Bold'
+          font-size: 40px !important
+          text-transform: uppercase
+          line-height: 38px
+          b, strong
+            font-family: 'Open Sans Bold'
+            font-size: 35px !important
+
+.cars
+  .car
+    margin-bottom: 20px
+    a
+      display: block
+      text-transform: uppercase
+      margin-bottom: 10px
+      font-size: 15px
+      color: $blue_hover
+    img
+      padding-top: 10px
+      display: block
+      max-width: 120px
+    table
+      width: 100%
+      tr
+        &:nth-child(1)
+          td
+            font-family: 'Open Sans Bold'
+      td
+        &:nth-child(1)
+          font-family: 'Open Sans Bold'
+
+#navigation_blocks
+  width: 100%
+  display: table
+  margin-bottom: 30px
+  div:not(.clearfix)
+    width: 20%
+    float: left
+    display: block
+    padding: 40px 20px
+    min-height: 250px
+    &:nth-child(1)
+      background: #00AFF0
+    &:nth-child(2)
+      background: #0194CA
+    &:nth-child(3)
+      background: #20A8DA
+    &:nth-child(4)
+      background: #49C9F9
+    &:nth-child(5)
+      background: #36BFF2
+    a
+      display: block
+      margin: 0 auto
+      color: #000
+      text-transform: uppercase
+      font-size: 18px
+      text-align: center
+      margin-bottom: 15px
+      min-height: 52px
+      text-decoration: underline
+      &.pt
+        padding-top: 12px
+    p
+      display: table
+      margin: 0 auto
+      color: #fff
+      line-height: 20px
+      text-align: center
+      font-size: 14px
+
+#map
+  display: block
+  width: 100%
+  height: 400px
+  margin: 0
+  padding: 0
+  margin-top: 20px !important
+
+.feedback
+  p
+    margin-bottom: 2px
+    &.name
+      text-transform: uppercase
+      font-size: 17px
+      color: #000
+      margin-bottom: 10px
+    &.comment
+      font-style: italic
+  span
+    font-family: 'Open Sans Bold'
+    padding-right: 5px
+    color: #000
+    &.date
+      font-family: 'Open Sans'
+      font-size: 12px
+      padding-left: 15px
+      color: $blue
+      text-transform: none
+    &.about
+      font-family: 'Open Sans'
+      font-size: 14px
+      text-transform: none
+
+  .polosa
+    display: table
+    width: 50%
+    height: 1px
+    margin: 20px auto
+    background: #eee
+
+#carousel-cars
+  .carousel-control
+    background: none
+    .glyphicon-chevron-right
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRGMDA2N0M3MUI1OTExRTc4MkM3QTAzQ0Q0MkQ5MTY4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRGMDA2N0M4MUI1OTExRTc4MkM3QTAzQ0Q0MkQ5MTY4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REYwMDY3QzUxQjU5MTFFNzgyQzdBMDNDRDQyRDkxNjgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REYwMDY3QzYxQjU5MTFFNzgyQzdBMDNDRDQyRDkxNjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz76svFPAAAA10lEQVR42syXQQ6CQAxFqWHlTVzrlTB6IhGv5J6buHT8xFl0Q6a039QmP8CkzWNgpp1KKaUz2AAdoStkCmjaAm5ogN7la3dIDDFN7QzvdoKk3p+hUT3/dMZSZ6otPHOrIx2+xZkK3xpAg3s+EwXuXRxheGQvhuDRROCGd4Qs5IIzwC44C7wGHyO52px9a/Wa1dh+zZkJXgrHDTqosVekSPztP05Z1Sn7OCVzpeTqlOqUUo9TTiApZ660UyYdai0ST9W2TNCF0cb0Bp9HvVJ7JzE2bXT7CDAAzFSA0MfifSQAAAAASUVORK5CYII=')
+      top: 33%
+      right: 25%
+    .glyphicon-chevron-left
+      left: 25%
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM3RkFEMEEzMUI1QTExRTc5QkEwQUUyQTM5QzJBQTYyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM3RkFEMEE0MUI1QTExRTc5QkEwQUUyQTM5QzJBQTYyIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MzdGQUQwQTExQjVBMTFFNzlCQTBBRTJBMzlDMkFBNjIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MzdGQUQwQTIxQjVBMTFFNzlCQTBBRTJBMzlDMkFBNjIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz79qX/tAAAA1ElEQVR42syXTQrCQAyFHRG8i1vPZBEPpNN6pm57FzfGDLaQRUfTJPUZeDAzpP0IneYnEdEm2BLrxupZ96pXAQcqsVp625N1qvlugyPNrEbsj2tHLCOdrB3PZ5+BQCPAJqgXXF7eWaAesAtqBbuhFnAIdCk4DLoEPAfNVqgWHA7VgsOh2ly9F+uBdSmZ1pvYNeCHWB9Y17EA+OyfvzHsVkP/Y2jmguZqaHWC1mNoBwLtuaBd5id4/kVDXwrHmdWJfV9z3gXPTROcvs1OaYWhTWUvAQYAkL2Ccqz1aH4AAAAASUVORK5CYII=')
+      top: 33%
+  .car-name
+    color: $black
+    display: inline-block
+    text-align: center
+    min-height: 55px
+    margin-top: 10px
+
+.uslugi-ul
+  li
+    list-style: none
+    margin-bottom: 8px
+    display: block
+    h3
+      margin-bottom: 0px
+    a
+      font-size: 14px
+      text-transform: uppercase
+      margin-bottom: 8px
+
+.left_block
+  margin-bottom: 30px
+  //border: 1px solid $blue_text
+  padding: 15px
+  border-top: 0
+  background: #F2FDFF
+  p.title
+    text-transform: uppercase
+    font-family: 'Open Sans'
+    color: #fff
+    font-size: 15px
+    margin-bottom: 10px
+    position: relative
+    padding: 6px 10px
+    padding-left: 15px
+    background: $blue
+    margin: -15px
+    margin-bottom: 10px
+  //&:before
+  //  position: absolute
+  //  content: ''
+  //  height: 30px
+  //  width: 1000px
+  //  background: $blue_hover
+  //  top: -4px
+  //  right: 0
+  //  z-index: -1
+  .all_feedback
+    text-align: right
+    width: 100%
+    display: block
+  ul
+    margin-left: 0px
+    li
+      list-style: none
+      margin-bottom: 3px
+  .feedback
+    p
+      padding-left: 10px
+      margin-bottom: 5px
+      span
+        font-size: 12px
+        display: block
+        margin-left: -7px
+        &:before
+          content: '- '
+        &.about
+          display: none
+        &.date
+          margin-left: 0px
+          padding-left: 0
+          font-size: 11px
+          display: inline-table
+          &:before
+            content: ''
+      //&.zakazannaya_usluga
+      //  display: none
+      &.worker
+        display: none
+      &.name
+        padding-left: 0
+        font-size: 14px
+        span
+          margin-left: 0px
+      &.comment
+        padding-left: 0
+    .polosa
+      width: 100%
+
+.add_feedback
+  .link
+  color: $blue
+  text-decoration: underline
+  cursor: pointer
+  &:hover
+    color: $blue_hover_2
+
+nav.breadcrumb
+  padding: 0
+  background: none
+  margin-bottom: 10px
+  border-bottom: #eee 1px solid
+  padding-bottom: 0.5em
+  font-size: 12px
+  a
+    color: $blue
+    font-size: 12px
+    text-decoration: none
+    &::before
+      padding: 0 5px !important
+      color: #333 !important
+      content: '»'
+    &:first-child
+      &::before
+        padding: 0px !important
+        content: '' !important
+
+.car-img
+  img
+    margin: 0 auto
+    min-height: 113px
+
+.car
+  min-height: 140px
+  .price
+    font-family: 'Open Sans Bold'
+    font-size: 19px
+    margin-bottom: 10px
+    display: block
+    span
+      font-size: 13px
+
+  .all_car_features
+    margin-left: 0
+    padding-left: 0
+    &.show
+      display: block !important
+    li
+      list-style-type: none
+      font-size: 13px
+      padding: 10px 0px
+      border-bottom: 1px solid #eee
+      & > span
+        display: block
+        font-family: 'Open Sans Bold'
+
+  .name
+    //min-height: 60px
+    //font-family: 'Open Sans Bold'
+    padding: 10px 0
+    text-transform: uppercase
+  .open_all
+    position: relative
+    background: $black
+    color: #fff
+    display: table
+    padding: 6px 15px
+    padding-right: 30px
+    text-align: center
+    cursor: pointer
+    font-size: 13px
+    +transition
+    &:hover
+      background: $yellow
+      color: #000000
+      text-decoration: none
+      .arrow-right
+        color: $black
+    .arrow-right
+      right: 10px
+      top: 5px
+      color: #fff
+      &:before
+        width: 7px
+        height: 7px
+        top: -3px
+      &.icon
+        width: 14px
+
+  img
+  //max-height: 100px
+  ul
+    margin-left: 15px
+    display: none
+
+.bl
+  margin-bottom: 30px
+
+#pagination
+  display: table
+  margin: 0 auto
+  margin-top: 10px
+  .pagination
+    display: inline-table
+    margin-top: 0
+  span
+    display: table
+    padding: 10px
+    float: left
+    padding-top: 8px
+
+#add_feedback
+  display: table
+  margin: 0 auto
+  margin-bottom: 20px
+  +transition
+  +border-radius(0px)
+  color: #ffffff
+  background: $blue
+  padding: 10px 20px
+  border-bottom: 4px solid #0085b7
+  cursor: pointer
+  &:hover
+    background: $blue_phones
+
+#feedback_modal
+  .chosen-container
+    width: 100% !important
+  .chosen-single
+    +border-radius(0px !important)
+  #error
+    display: none
+    color: #EE5757
+    font-size: 12px
+  .process
+    display: none
+    padding: 50px
+    width: 100%
+    text-align: center
+    font-family: 'Open Sans Bold'
+    font-size: 18px !important
+    color: #333
+  .modal-content
+    +border-radius(0px)
+  .modal-header
+    text-transform: uppercase
+    background: $blue
+    color: #fff !important
+    border-bottom: 0px !important
+    font-family: 'Open Sans Bold'
+    .modal-title
+      font-size: 16px !important
+  button
+    +transition
+    +border-radius(0px)
+    color: #ffffff
+    background: $blue
+    &:hover
+      background: $blue_phones
+  .red
+    border: 1px solid #EE5757
+  input, textarea, select
+    +border-radius(0px)
+    +transition
+  label
+    margin-top: 12px
+    font-family: 'Open Sans'
+    font-weight: 400 !important
+  select
+    width: 100%
+    padding: 7px 5px
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)
+    border: 1px solid #ccc
+  #ticket
+    font-size: 13px
+    opacity: 0.6
+    margin-bottom: 5px
+    margin-top: 2px
+  .necess
+    color: red
+
+
+
+.raschet
+  h3
+    text-transform: uppercase
+    font-family: 'Open Sans'
+    color: #fff
+    font-size: 15px
+    padding: 9px 10px
+    padding-left: 15px
+    background: #0194ca
+    margin-bottom: 30px
+  .map-num
+    color: $blue_phones
+    background: $blue_phones
+    color: #fff
+    padding: 2px 10px
+    font-size: 12px
+    margin-right: 7px
+    font-family: 'Open Sans'
+    text-transform: none
+  .title
+    margin-bottom: 10px
+    font-family: 'Open Sans Bold'
+    text-transform: uppercase
+    font-size: 13px
+  .bl
+    margin-bottom: 30px
+  select
+    padding: 5px
+  .result
+    p
+      font-family: 'Open Sans Bold'
+      span
+        font-family: 'Open Sans'
+
+footer
+  border-top: 1px solid #eee
+  border-bottom: 12px solid #eee
+  margin-top: 30px
+  padding-bottom: 1rem
+  padding: 10px
+  .social_button
+    display: table
+    float: right
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale")
+    -webkit-filter: grayscale(100%)
+    filter: grayscale(100%)
+  .copyright
+    font-size: 13px
+  .link
+    text-decoration: none
+    color: grey
+    text-align: right
+    &:hover
+      text-decoration: none
+      color: #fff
+      +transition
+
+.fancybox-skin
+  +border-radius(0px !important)
+  padding: 3px !important
+  background: $blue
+
+.effect-bubba
+  width: 100%
+  overflow: hidden
+
+/*---------------*/
+/***** Bubba *****/
+/*---------------*/
+
+a.effect-bubba
+  position: relative
+  cursor: pointer
+  display: table
+
+a.effect-bubba img
+  -webkit-transition: all 0.35s
+  transition: all 0.35s
+  overflow: hidden
+  position: relative
+
+a.effect-bubba img:before
+  content: ''
+  position: absolute
+  top: 0px
+  left: 0px
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, 0.2)
+  z-index: 2
+
+a.effect-bubba:hover img
+  +border-top-right-radius(15px)
+  +border-bottom-left-radius(15px)
+  -webkit-filter: grayscale(100%)
+  filter: grayscale(100%)
+
+a.effect-bubba::before,
+a.effect-bubba::after
+  position: absolute
+  top: 2px
+  right: 2px
+  bottom: 2px
+  left: 2px
+  content: ''
+  opacity: 1
+  -webkit-transition: all 0.35s, -webkit-transform 0.35s
+  transition: all 0.35s, transform 0.35s
+  -webkit-transform: scale(1)
+  transform: scale(1)
+  border-top: 1px solid #fff
+  border-bottom: 1px solid #fff
+  border-right: 1px solid #fff
+  border-left: 1px solid #fff
+
+a.effect-bubba:hover::before,
+a.effect-bubba:hover::after
+  opacity: 0
+  -webkit-transform: scale(0.1)
+  transform: scale(0.1)
+
+@media (min-width: 768px) and (max-width: 1200px)
+  #navigation_blocks
+    div:not(.clearfix)
+      width: 33.33% !important
+      &:nth-child(4), &:nth-child(5)
+        width: 50% !important
+
+@media (min-width: 481px) and (max-width: 768px)
+  #navigation_blocks
+    div:not(.clearfix)
+      min-height: 218px !important
+      width: 50% !important
+      padding: 30px 20px !important
+      &:nth-child(5)
+        width: 100% !important
+
+@media (max-width: 768px)
+  #top
+    img
+      display: table
+      margin: 0 auto
+    .phones
+      display: table
+      margin: 0 auto
+      float: none
+      .phone
+        font-size: calc(1.2rem + 1vw)
+    #touch-menu
+      top: -23px
+  #top_image
+    margin-top: 0 !important
+  #menu
+    height: 0px
+    min-height: 0px !important
+    margin-bottom: 0px !important
+  .homeblock
+    margin-bottom: 20px
+    .bottom
+      min-height: unset !important
+      padding-bottom: 70px !important
+      .img
+        height: 292px !important
+
+@media (max-width: 480px)
+  #top
+    img
+      margin-bottom: 10px !important
+    .phones
+      display: table
+      margin: 0 auto
+      float: left
+      #touch-menu
+        top: 8px
+      .phone
+        float: none !important
+        font-size: calc(1.2rem + 2vw)
+        display: block
+        margin: 0px
+  #top_image
+    p
+      margin: 0 !important
+      font-size: 20px !important
+      text-shadow: .05em .05em 0 rgba(0, 0, 0, .82)
+  #navigation_blocks
+    div:not(.clearfix)
+      width: 100% !important
+      padding: 20px !important
+      min-height: unset !important
+      .pt
+        padding: 0px !important
+        min-height: unset !important
+  .homeblock
+    .img
+      height: 188px !important
+
+@media (max-width: 320px)
+  .homeblock
+    .img
+      height: 188px !important
+
+//@media (min-width: 768px) and (max-width: 980px)
+// h3:after
+//     calc(4.6rem + 1vw) !important
+
+
+
+
+//
+//
+//
+///* Landscape - телефоны */
+//@media (max-width: 320px)
+//
+//@media (min-width: 321px) and (max-width: 480px)
+//
+///* От ландшафтного экрана телефона до потретного планшета */
+//@media (min-width: 481px) and (max-width: 767px)
+//
+///* От портретного планшета до ландшафтного экрана и настольных дисплеев */
+//@media (min-width: 768px) and (max-width: 1200px)
+//
+///* Большой дисплей */
+////@media (min-width: 1200px)
+

@@ -1,0 +1,7 @@
+Как обновлять базу страниц
+
+1. Из парсера добавляются данные
+2. Запускаем set_cpu.php
+3. Запускаем view_double_table_RECORD_CPU_PATH.php
+4. Запускаем sclonyator.php
+5. update_auto_type.php
