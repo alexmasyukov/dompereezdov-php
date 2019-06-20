@@ -437,11 +437,7 @@ class PageMskServices extends Page {
             $page->$key = mb_str_replace('#zn_7#', $page->zn_7, $page->$key);
             $page->$key = mb_str_replace('#etnohoronim_mn_p_da#', $page->etnohoronim_mn_p_da, $page->$key);
 
-            $page->$key = mb_str_replace('#phone1#', $GLOBALS['phones']->phone1->text, $page->$key);
-            $page->$key = mb_str_replace('#phone2#', $GLOBALS['phones']->phone2->text, $page->$key);
-            $page->$key = mb_str_replace('#phone3#', $GLOBALS['phones']->phone3->text, $page->$key);
-            $page->$key = mb_str_replace('#phone4#', $GLOBALS['phones']->phone4->text, $page->$key);
-
+            $page->$key = Page::replacePhones($page->$key);
             //            $page->$key = mb_str_replace('##', $page->, $page->$key);
         }
         return $page;

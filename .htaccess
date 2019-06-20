@@ -18,45 +18,45 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$
 RewriteRule ^(.*[^/])$ $1/ [L,R=301]
-#
-#<IfModule mod_alias.c>
-#    Redirect 301 /services/демонтаж-и-утилизация-мебели.html  https://www.dompereezdov.ru/services/vyvoz-staroy-mebeli/utilizaciya-mebeli
-#    Redirect 301 /services/utilizaciya-pianino.html  https://www.dompereezdov.ru/services/perevozka-pianino/utilizaciya-pianino
-#    Redirect 301 /services/vyvoz-pianino.html  https://www.dompereezdov.ru/services/perevozka-pianino/vyvoz-pianino
-#    Redirect 301 /services/квартирный-переезд https://www.dompereezdov.ru/services/kvartirnyy-pereezd
-#    Redirect 301 /services/квартирный-переезд.html https://www.dompereezdov.ru/services/kvartirnyy-pereezd
-#    Redirect 301 /services/офисный-переезд https://www.dompereezdov.ru/services/ofisnyy-pereezd
-#    Redirect 301 /services/офисный-переезд.html https://www.dompereezdov.ru/services/ofisnyy-pereezd
-#    Redirect 301 /services/дачный-переезд https://www.dompereezdov.ru/services/dachnyy-pereezd
-#    Redirect 301 /services/дачный-переезд.html https://www.dompereezdov.ru/services/dachnyy-pereezd
-#    Redirect 301 /services/перевозка-мебели https://www.dompereezdov.ru/services/perevozka-mebeli
-#    Redirect 301 /services/вывоз-и-утилизация-мебели.html https://www.dompereezdov.ru/services/vyvoz-staroy-mebeli
-#    Redirect 301 /services/услуги-грузчиков https://www.dompereezdov.ru/services/uslugi-gruzchikov
-#    Redirect 301 /services/услуги-грузчиков.html https://www.dompereezdov.ru/services/uslugi-gruzchikov
-#    Redirect 301 /services/упаковочные-материалы https://www.dompereezdov.ru/services/upakovochnye-materialy
-#    Redirect 301 /services/упаковочные-материалы.html https://www.dompereezdov.ru/services/upakovochnye-materialy
-#    Redirect 301 /about.html https://www.dompereezdov.ru/transportnaya-kompaniya
-#    Redirect 301 /заказ-транспорта.html https://www.dompereezdov.ru/zakaz-transporta
-#    Redirect 301 /заказ-транспорта https://www.dompereezdov.ru/zakaz-transporta
-#    Redirect 301 /prices.html https://www.dompereezdov.ru/ceny
-#    Redirect 301 /prices https://www.dompereezdov.ru/ceny
-#    Redirect 301 /контакты https://www.dompereezdov.ru/kontakty
-#    Redirect 301 /services/transportnie-uslugi /services/transportnye-uslugi
-#    Redirect 301 /demontazhnye-raboty/stoimost-demontazhnyh-rabot.html /services/demontazhnye-raboty/stoimost-demontazhnyh-rabot
-#    Redirect 301 /services/demontazh-mebeli.html /services/vyvoz-staroy-mebeli/demontazh-mebeli
-#    Redirect 301 /services/перевозка-пианино.html /services/perevozka-pianino
-#    Redirect 301 /services/перевозка-пианино/ /services/perevozka-pianino
-#
-#    Redirect 301 /services/perevozka-mebeli/perevozka-korpusnoy-mebeli.html /services/perevozka-mebeli
-#
-#    Redirect 301 /demontazhnye-raboty/ /services/demontazhnye-raboty
-#    Redirect 301 /demontazhnye-raboty/stoimost-demontazhnyh-rabot/ /services/demontazhnye-raboty/stoimost-demontazhnyh-rabot
-#
-#    Redirect 301 /index/gruzoperevozki-cao/ /
-#    Redirect 301 /glavnaya-stranica/glavnaya/ /
-#
-#
-#</IfModule>
+
+<IfModule mod_alias.c>
+    Redirect 301 /services/демонтаж-и-утилизация-мебели.html  https://www.dompereezdov.ru/services/vyvoz-staroy-mebeli/utilizaciya-mebeli
+    Redirect 301 /services/utilizaciya-pianino.html  https://www.dompereezdov.ru/services/perevozka-pianino/utilizaciya-pianino
+    Redirect 301 /services/vyvoz-pianino.html  https://www.dompereezdov.ru/services/perevozka-pianino/vyvoz-pianino
+    Redirect 301 /services/квартирный-переезд https://www.dompereezdov.ru/services/kvartirnyy-pereezd
+    Redirect 301 /services/квартирный-переезд.html https://www.dompereezdov.ru/services/kvartirnyy-pereezd
+    Redirect 301 /services/офисный-переезд https://www.dompereezdov.ru/services/ofisnyy-pereezd
+    Redirect 301 /services/офисный-переезд.html https://www.dompereezdov.ru/services/ofisnyy-pereezd
+    Redirect 301 /services/дачный-переезд https://www.dompereezdov.ru/services/dachnyy-pereezd
+    Redirect 301 /services/дачный-переезд.html https://www.dompereezdov.ru/services/dachnyy-pereezd
+    Redirect 301 /services/перевозка-мебели https://www.dompereezdov.ru/services/perevozka-mebeli
+    Redirect 301 /services/вывоз-и-утилизация-мебели.html https://www.dompereezdov.ru/services/vyvoz-staroy-mebeli
+    Redirect 301 /services/услуги-грузчиков https://www.dompereezdov.ru/services/uslugi-gruzchikov
+    Redirect 301 /services/услуги-грузчиков.html https://www.dompereezdov.ru/services/uslugi-gruzchikov
+    Redirect 301 /services/упаковочные-материалы https://www.dompereezdov.ru/services/upakovochnye-materialy
+    Redirect 301 /services/упаковочные-материалы.html https://www.dompereezdov.ru/services/upakovochnye-materialy
+    Redirect 301 /about.html https://www.dompereezdov.ru/transportnaya-kompaniya
+    Redirect 301 /заказ-транспорта.html https://www.dompereezdov.ru/zakaz-transporta
+    Redirect 301 /заказ-транспорта https://www.dompereezdov.ru/zakaz-transporta
+    Redirect 301 /prices.html https://www.dompereezdov.ru/ceny
+    Redirect 301 /prices https://www.dompereezdov.ru/ceny
+    Redirect 301 /контакты https://www.dompereezdov.ru/kontakty
+    Redirect 301 /services/transportnie-uslugi /services/transportnye-uslugi
+    Redirect 301 /demontazhnye-raboty/stoimost-demontazhnyh-rabot.html /services/demontazhnye-raboty/stoimost-demontazhnyh-rabot
+    Redirect 301 /services/demontazh-mebeli.html /services/vyvoz-staroy-mebeli/demontazh-mebeli
+    Redirect 301 /services/перевозка-пианино.html /services/perevozka-pianino
+    Redirect 301 /services/перевозка-пианино/ /services/perevozka-pianino
+
+    Redirect 301 /services/perevozka-mebeli/perevozka-korpusnoy-mebeli.html /services/perevozka-mebeli
+
+    Redirect 301 /demontazhnye-raboty/ /services/demontazhnye-raboty
+    Redirect 301 /demontazhnye-raboty/stoimost-demontazhnyh-rabot/ /services/demontazhnye-raboty/stoimost-demontazhnyh-rabot
+
+    Redirect 301 /index/gruzoperevozki-cao/ /
+    Redirect 301 /glavnaya-stranica/glavnaya/ /
+
+
+</IfModule>
 
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -67,68 +67,68 @@ ErrorDocument 404 /404
 </IfModule>
 
 
+
+
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4.0678 no-gzip
+BrowserMatch bMSIE gzip-only-text/html
+<ifmodule mod_gzip.c>
+    mod_gzip_on Yes
+    mod_gzip_item_include file \.js$
+    mod_gzip_item_include file \.css$
+</IfModule>
+
+
+<IfModule mod_expires.c>
+ExpiresActive on
+ExpiresDefault                          "access plus 1 month"
+ExpiresByType text/cache-manifest       "access plus 0 seconds"
+ExpiresByType text/html                 "access plus 0 seconds"
+ExpiresByType text/xml                  "access plus 0 seconds"
+ExpiresByType application/xml           "access plus 0 seconds"
+ExpiresByType application/json          "access plus 0 seconds"
+ExpiresByType application/rss+xml       "access plus 1 month"
+ExpiresByType image/x-icon              "access plus 1 week"
+ExpiresByType image/gif                 "access plus 1 year"
+ExpiresByType image/png                 "access plus 1 year"
+ExpiresByType image/jpg                 "access plus 1 year"
+ExpiresByType image/jpeg                "access plus 1 year"
+ExpiresByType video/ogg                 "access plus 1 year"
+ExpiresByType audio/ogg                 "access plus 1 year"
+ExpiresByType audio/mp3                 "access plus 1 year"
+ExpiresByType video/mp4                 "access plus 1 year"
+ExpiresByType video/webm                "access plus 1 year"
+ExpiresByType text/x-component          "access plus 0 seconds"
+ExpiresByType font/truetype             "access plus 1 year"
+ExpiresByType font/opentype             "access plus 1 year"
+ExpiresByType font/woff2             "access plus 1 year"
+ExpiresByType application/x-font-woff   "access plus 1 year"
+ExpiresByType image/svg+xml             "access plus 1 month"
+ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+ExpiresByType text/css                  "access plus 2 months"
+ExpiresByType application/javascript    "access plus 2 months"
+ExpiresByType text/javascript           "access plus 2 months"
+<IfModule mod_headers.c>
+Header append Cache-Control "public"
+</IfModule>
+</IfModule>
+
+<Files "*.js">
+    ExpiresActive On
+    ExpiresDefault "access plus 7 days"
+    FileETag MTime Size
+</Files>
+
+
+
 #
-#
-#AddOutputFilterByType DEFLATE text/plain
-#AddOutputFilterByType DEFLATE text/html
-#AddOutputFilterByType DEFLATE text/xml
-#AddOutputFilterByType DEFLATE text/css
-#AddOutputFilterByType DEFLATE application/xml
-#AddOutputFilterByType DEFLATE application/xhtml+xml
-#AddOutputFilterByType DEFLATE application/rss+xml
-#AddOutputFilterByType DEFLATE application/javascript
-#AddOutputFilterByType DEFLATE application/x-javascript
-#
-#BrowserMatch ^Mozilla/4 gzip-only-text/html
-#BrowserMatch ^Mozilla/4.0678 no-gzip
-#BrowserMatch bMSIE gzip-only-text/html
-#<ifmodule mod_gzip.c>
-#    mod_gzip_on Yes
-#    mod_gzip_item_include file \.js$
-#    mod_gzip_item_include file \.css$
-#</IfModule>
-#
-#
-#<IfModule mod_expires.c>
-#ExpiresActive on
-#ExpiresDefault                          "access plus 1 month"
-#ExpiresByType text/cache-manifest       "access plus 0 seconds"
-#ExpiresByType text/html                 "access plus 0 seconds"
-#ExpiresByType text/xml                  "access plus 0 seconds"
-#ExpiresByType application/xml           "access plus 0 seconds"
-#ExpiresByType application/json          "access plus 0 seconds"
-#ExpiresByType application/rss+xml       "access plus 1 month"
-#ExpiresByType image/x-icon              "access plus 1 week"
-#ExpiresByType image/gif                 "access plus 1 year"
-#ExpiresByType image/png                 "access plus 1 year"
-#ExpiresByType image/jpg                 "access plus 1 year"
-#ExpiresByType image/jpeg                "access plus 1 year"
-#ExpiresByType video/ogg                 "access plus 1 year"
-#ExpiresByType audio/ogg                 "access plus 1 year"
-#ExpiresByType audio/mp3                 "access plus 1 year"
-#ExpiresByType video/mp4                 "access plus 1 year"
-#ExpiresByType video/webm                "access plus 1 year"
-#ExpiresByType text/x-component          "access plus 0 seconds"
-#ExpiresByType font/truetype             "access plus 1 year"
-#ExpiresByType font/opentype             "access plus 1 year"
-#ExpiresByType font/woff2             "access plus 1 year"
-#ExpiresByType application/x-font-woff   "access plus 1 year"
-#ExpiresByType image/svg+xml             "access plus 1 month"
-#ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
-#ExpiresByType text/css                  "access plus 2 months"
-#ExpiresByType application/javascript    "access plus 2 months"
-#ExpiresByType text/javascript           "access plus 2 months"
-#<IfModule mod_headers.c>
-#Header append Cache-Control "public"
-#</IfModule>
-#</IfModule>
-#
-#<Files "*.js">
-#    ExpiresActive On
-#    ExpiresDefault "access plus 7 days"
-#    FileETag MTime Size
-#</Files>
-#
-#
-#
-##

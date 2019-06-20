@@ -89,6 +89,16 @@ class Reviews {
                 ORDER BY
                     date DESC";
 
+        if (!empty($params->returnCount)) {
+            // ЭТО МОЖНО ИСПОЛЬЗОВАТЬ ТОГДА: когда нам нужно получить
+            // количество всех отызвов по выбранным параметрам
+            // Получаем общее количество таких отзывов
+            $sqlSelector = 'SELECT COUNT(*) ';
+            $reviewsForCount = Database::query($sqlSelector . $sql, 'asResult');
+
+            return $reviewsForCount->fetchColumn() - 1;
+        }
+
         $reviews = Database::query($sqlSelector . $sql . $sql_limit, 'withCount');
         if ($reviews->rowCount > 0) {
             foreach ($reviews->result as &$review) {
@@ -97,17 +107,6 @@ class Reviews {
                 $review->comment = Core::charsDecode($review->comment);
                 $review->why = Core::charsDecode($review->why);
             }
-
-            if (!empty($params->returnCount)) {
-                // ЭТО МОЖНО ИСПОЛЬЗОВАТЬ ТОГДА: когда нам нужно получить
-                // количество всех отызвов по выбранным параметрам
-                // Получаем общее количество таких отзывов
-                $sqlSelector = 'SELECT COUNT(*) ';
-                $reviewsForCount = Database::query($sqlSelector . $sql, 'asResult');
-
-                return $reviewsForCount->fetchColumn();
-            }
-
 
             return $reviews->result;
         }
@@ -121,31 +120,13 @@ class Reviews {
      * @return array
      */
     public static function getReviewsCount($params) {
-        Core::log($params);
+        // Установим параметр, чтобы возвратилось только число отзывов
         $additParams = array(
             'returnCount' => true
         );
 
         $params = array_merge($params, $additParams);
         return Reviews::getReviews($params);
-        //
-        //
-        //
-        //        Core::log($params);
-
-        //        return Reviews::getReviews();
-
-        //        $sql = "SELECT
-        //                    COUNT(*)
-        //                FROM
-        //                    feedback
-        //                WHERE
-        //                    public = 1
-        //                    AND date <= \'' . date('Y-m-d') . '\'
-        //
-        //        ";
-        //        $reviews = Database::query($sql, 'asResult');
-        //        return $reviews->fetchColumn() - 1;
     }
 
 
@@ -154,8 +135,7 @@ class Reviews {
      * @param $limit
      * @return mixed
      */
-    public
-    static function getPagesCount($reviewsCount, $limit) {
+    public static function getPagesCount($reviewsCount, $limit) {
         return ceil($reviewsCount / $limit);
     }
 
@@ -163,8 +143,7 @@ class Reviews {
     /**
      * @return mixed
      */
-    public
-    static function getCurrentPage() {
+    public static function getCurrentPage() {
         return self::$currentPage;
     }
 
@@ -172,8 +151,7 @@ class Reviews {
     /**
      * @return int
      */
-    public
-    static function getReviewsAllCount() {
+    public static function getReviewsAllCount() {
         return self::$reviewsAllCount;
     }
 }

@@ -32,10 +32,10 @@ class Page {
      * 404 страница вывод
      */
     public static function view404() {
-        // todo сделать шаблон 404 страницы
         header("HTTP/1.x 404 Not Found");
-        echo '<h1>404</h1>';
-        //        Core::brenchmark();
+        $page = new Page();
+        $page->view();
+        Core::getSmarty()->display('page404.tpl');
         exit;
     }
 
@@ -84,7 +84,7 @@ class Page {
             $page->description = trim(Core::charsDecode($page->description));
             return $page;
         } else {
-            false;
+            return false;
         }
     }
 
@@ -130,6 +130,19 @@ class Page {
         Core::getSmarty()->assign('breadcrumb', $this->generateBreadcrumbHTML(Core::getUrl(), $page));
     }
 
+
+    /**
+     * Заменяет переменные телефонов на телефоны из configuration
+     * @param $text
+     * @return string
+     */
+    public static function replacePhones($text){
+        $text = mb_str_replace('#phone1#', $GLOBALS['phones']->phone1->text, $text);
+        $text = mb_str_replace('#phone2#', $GLOBALS['phones']->phone2->text, $text);
+        $text = mb_str_replace('#phone3#', $GLOBALS['phones']->phone3->text, $text);
+        $text = mb_str_replace('#phone4#', $GLOBALS['phones']->phone4->text, $text);
+        return $text;
+    }
 
     /**
      * Генерирует HMTL хлебных крошек
@@ -188,12 +201,6 @@ class Page {
         // Отображаем количество всех отзывов (Москва и МО услуги свой класс)
         $reviews = Reviews::getReviews($params);
         Core::getSmarty()->assign('reviewsOfLeftBlock', $reviews);
-    }
-
-    // todo do it funcion
-    private function getPageType() {
-        // in template {if $pageType neq 'rabota'}
-        return '';
     }
 
 

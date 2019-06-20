@@ -1,5 +1,4 @@
 <div class="bl raschet">
-    {* todo: add name to title map *}
     <h3>{$page->titleMap}</h3>
     <div class="row">
         <div class="col-md-12">
