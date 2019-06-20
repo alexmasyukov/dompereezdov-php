@@ -33,6 +33,7 @@ class PageContent extends Page {
         Core::getSmarty()->assign('metaKeywords', $page->meta_keywords);
 
         $page->text = Core::charsDecode($page->description);
+        $page->text = Page::replacePhones($page->text);
 
         // Формируем отзывы слева
         $this->buildReviewsOnLeftBlock();

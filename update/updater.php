@@ -206,6 +206,7 @@ class PagesBuilder {
                 $lastTown = $page;
                 foreach ($this->services as $sort => $service) {
                     if (!empty($service->isNewService) && $service->isNewService == true)
+                        $service->public = 0;
                         $this->newMOPages[] = $this->generatePage($service, $lastTown, $sort);
                 }
             }
@@ -237,7 +238,7 @@ class PagesBuilder {
             'p_tv' => !empty($lastTown->p_tv) ? $lastTown->p_tv : '',
             'p_pr' => !empty($lastTown->p_pr) ? $lastTown->p_pr : '',
             'sort' => $sort,
-            'public' => '1',
+            'public' => !empty($service->public) ? $service->public : 0,
             'meta_title' => $service->metaTitle,
             'meta_description' => $service->metaDescription,
             'meta_keywords' => '',

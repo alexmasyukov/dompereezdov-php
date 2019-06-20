@@ -20,7 +20,6 @@ $textPositionRequest = $_REQUEST['textPosition'];
 $direction = $textDirections[$textDirectionRequest];
 
 
-
 if (empty($direction->pagesId)) {
     $pagesId = Database::query($direction->sql, 'column');
 } else {
@@ -56,7 +55,7 @@ function recordTextsToPages($pagesId, $texts, $textPosition) {
         $updateSQL = "UPDATE pages_texts SET $textPosition = '".Core::charsEncode($text)."'
                             WHERE page_id = $pageId";
 
-        $insertSQL = "INSERT INTO pages_texts (page_id, $textPosition) 
+        $insertSQL = "INSERT INTO pages_texts (page_id, $textPosition)
                             VALUES ($pageId, '".Core::charsEncode($text)."')";
 
 //        echo $updateSQL.'<br/>';

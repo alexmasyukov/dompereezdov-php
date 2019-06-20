@@ -16,6 +16,11 @@ function getServiceSQL($service, $sqlParentId) {
 }
 
 
+//function getServiceSQL_MO($service, $sqlParentId) {
+//
+//}
+
+
 $oneDirections = array(
     'Москва' => (object)array(
         'pagesId' => 10000
@@ -29,7 +34,16 @@ $oneDirections = array(
     'Москва > города' => (object)array(
         'sql' => 'select id from pages where parent_id = 10000 and type = \'town\''
     ),
-    'Московская область' => '',
+    'Московская область' => (object)array(
+        'pagesId' => 1
+    ),
+    'Московская область > районы' => (object)array(
+        'sql' => ' select id from pages where parent_id >= 1 and parent_id < 10000 and page_type = "connected"'
+    ),
+    'Московская область > населенные пункты' => (object)array(
+        'sql' => ' select id from pages where parent_id >= 1 and parent_id < 10000 and page_type = "town"'
+    ),
+    'end33' => '',
 );
 
 $textDirections = array(
@@ -122,6 +136,33 @@ $textDirections = array(
 
     'end4' => '',
 
+
+
+    'Московская область > нас. пункты > Грузоперевозки' => (object)array(
+        'sql' => getServiceSQL('gruzoperevozki', $oneDirections['Московская область > населенные пункты']->sql),
+    ),
+    'Московская область > нас. пункты > Вывоз мебели' => (object)array(
+        'sql' => getServiceSQL('vyvoz-mebeli', $oneDirections['Московская область > населенные пункты']->sql),
+    ),
+    'Московская область > нас. пункты > Перевозка пианино' => (object)array(
+        'sql' => getServiceSQL('perevozka-pianino', $oneDirections['Московская область > населенные пункты']->sql),
+    ),
+    'Московская область > нас. пункты > Квартирный переезд' => (object)array(
+        'sql' => getServiceSQL('kvartirnyj-pereezd', $oneDirections['Московская область > населенные пункты']->sql),
+    ),
+    'Московская область > нас. пункты > Дачный переезд' => (object)array(
+        'sql' => getServiceSQL('dachnyj-pereezd', $oneDirections['Московская область > населенные пункты']->sql),
+    ),
+    'Московская область > нас. пункты > Офисный переезд' => (object)array(
+        'sql' => getServiceSQL('ofisnyj-pereezd', $oneDirections['Московская область > населенные пункты']->sql),
+    ),
+    'Московская область > нас. пункты > Перевозка мебели' => (object)array(
+        'sql' => getServiceSQL('perevozka-mebeli', $oneDirections['Московская область > населенные пункты']->sql),
+    ),
+    'Московская область > нас. пункты > Грузовое такси' => (object)array(
+        'sql' => getServiceSQL('gruzovoe-taksi', $oneDirections['Московская область > населенные пункты']->sql),
+    ),
+
 //
 //
 //    'Московская область > районы' => (object)array(
@@ -134,13 +175,14 @@ $textDirections = array(
 //    'Московская область > нас. пункты > Грузоперевозки' => '',
 //    'Московская область > нас. пункты > Вывоз мебели' => '',
 //    'Московская область > нас. пункты > Перевозка пианино' => '',
-//    'Московская область > нас. пункты > Квартирный переезд' => '',
+//
 //    'Московская область > нас. пункты > Дачный переезд' => '',
 //    'Московская область > нас. пункты > Офисный переезд' => '',
 //    'Московская область > нас. пункты > Перевозка мебели' => '',
 //    'Московская область > нас. пункты > Грузовое такси' => '',
 );
 
+$textDirections = array_merge($oneDirections, $textDirections);
 
 $textPostition = array(
     'top_text' => 'Верхний',

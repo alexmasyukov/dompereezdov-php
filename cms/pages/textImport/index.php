@@ -67,11 +67,11 @@ require $root . '/core/class.database.inc';
                             <label class="col-md-1 control-label">Раздел:
                                 <span class="required">*</span>
                             </label>
-                            <div class="col-md-3">
+                            <div class="col-md-9">
                                 <select class="table-group-action-input form-control input-medium" type="select"
                                         data-massive-element-type="select" data-necessarily="true"
                                         data-table-field="public"
-                                        data-select-of-type="value" id="textDirection" tabindex="13">
+                                        data-select-of-type="value" id="textDirection" tabindex="13" style="width: 100% !important;">
                                     <option value=""></option>
                                     <?php
                                     include_once $root . '/cms/pages/textImport/textDirections.php';
@@ -115,11 +115,11 @@ require $root . '/core/class.database.inc';
 
                             <div class="col-md-10">
                                 <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10"
-                                     style="float: left;">
+                                     style=" width: 100%;">
 
 
-                                    <a id="tab_images_uploader_uploadfiles" class="btn yellow" style=" float: left;">
-                                        <input type="file" ACCEPT=".txt" name="fileupload" id="fileupload"
+                                    <a id="tab_images_uploader_uploadfiles" class="btn yellow" style=" width: 100%;">
+                                        <input type="file" ACCEPT=".txt" name="fileupload" id="fileupload" style="width: 100%;"
                                                onchange="return ajaxFileUpload_file('fileupload', '/uploads/');"/>
                                     </a>
 
