@@ -136,7 +136,7 @@ class Page {
      * @param $text
      * @return string
      */
-    public static function replacePhones($text){
+    public static function replacePhones($text) {
         $text = mb_str_replace('#phone1#', $GLOBALS['phones']->phone1->text, $text);
         $text = mb_str_replace('#phone2#', $GLOBALS['phones']->phone2->text, $text);
         $text = mb_str_replace('#phone3#', $GLOBALS['phones']->phone3->text, $text);
@@ -160,8 +160,23 @@ class Page {
                 break;
             case 'moskovskaya-oblast':
             case 'moskva':
-                // todo: fix it - as result Главная » Московская область, Домодедово » Вывоз и утилизация мебели и техники в Домодедово недорого
-                if (!empty($page->breadcrumb)) $breadcrumb .= $page->breadcrumb;
+                if (!empty($page->breadcrumb_names)) {
+                    $names = explode('*', $page->breadcrumb_names);
+                    $paths = explode('*', $page->breadcrumb_paths);
+
+                    if (count($names) == 1) {
+                        $lastName = $names[0];
+                    }
+
+                    if (count($names) > 1) {
+                        $lastName = array_pop($names);
+                        $middleTitle = implode(', ', $names);
+                        $breadcrumb .= '<a href="' . $paths[count($names) - 1] . '">' . $middleTitle . '</a>';
+                    }
+
+                    if (!empty($lastName))
+                        $breadcrumb .= ' » ' . $lastName;
+                }
                 break;
             case 'otzyvy':
                 if ($coreUrlObj->action == '') {

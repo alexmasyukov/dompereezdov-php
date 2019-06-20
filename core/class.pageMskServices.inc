@@ -499,12 +499,19 @@ class PageMskServices extends Page {
 
 
         // Обновляем хлебные крошки, добавляя название страницы в конец
-        // todo: это нужно сделать для МО и Москвы
         $this->updateBreadcrumb($page);
 
         // Формируем отзывы слева
+        $townId = $page->parent_id;
+        if ($page->page_type == 'connecting' || $page->page_type == 'town') {
+            $townId = $page->id;
+        }
+        if ($page->page_type == 'service') {
+            $townId = $page->parent_id;
+        }
         $this->buildReviewsOnLeftBlock(array(
-            'townId' => $page->id
+            'townId' => $townId,
+            'service' => $page->page_type == 'service' ? $page->russianName : ''
         ));
 
         Core::getSmarty()->assign('mapPath', str_replace('*', ',', $page->breadcrumb_names));

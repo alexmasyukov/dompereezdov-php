@@ -65,6 +65,11 @@ class Reviews {
             $sql_pain = " AND pain LIKE '%$params->pain%' ";
         }
 
+        $sql_service = '';
+        if (!empty($params->service)) {
+            $sql_service = " AND usluga LIKE '%$params->service%' ";
+        }
+
 
         // todo fix it - если указать ?page=55 сработает (вкл Core::log($params);)
         // Показываем нужную страницу
@@ -86,6 +91,7 @@ class Reviews {
                     public=1
                     $sql_pain
                     $sql_towns
+                    $sql_service
                 ORDER BY
                     date DESC";
 
@@ -98,6 +104,8 @@ class Reviews {
 
             return $reviewsForCount->fetchColumn() - 1;
         }
+
+//        echo $sqlSelector . $sql . $sql_limit;
 
         $reviews = Database::query($sqlSelector . $sql . $sql_limit, 'withCount');
         if ($reviews->rowCount > 0) {

@@ -124,7 +124,6 @@ class PagesBuilder {
     }
 
 
-
     /**
      * Записывает сгенерированные хлебные крошки в БД
      */
@@ -186,7 +185,7 @@ class PagesBuilder {
         }
 
         $sql = "UPDATE pages SET " . implode(',', $sql_part) . "  WHERE id = $item->id";
-//        echo $sql.'<br>';
+        //        echo $sql.'<br>';
         $result = Database::query($sql, 'asResult');
     }
 
@@ -205,6 +204,7 @@ class PagesBuilder {
 
                     if ($one == $two) {
                         $page = (object)array_merge((array)$pageForMerge, (array)$page);
+                        //                        Core::log($page);
                         echo ' = <span style="color: red">' . $two . '</span>';
                         break;
                     }
@@ -256,9 +256,10 @@ class PagesBuilder {
                     'sort' => $sort,
                     'type' => $key,
                     'pageType' => 'town',
+
                 );
                 $newTown = (object)array_merge((array)$newTown, (array)$town);
-                //                Core::log($newTown);
+                //                                Core::log($newTown);
                 //                Core::log($this->generateUniversalPage($newTown));
                 $this->newMoskvaPages[] = $this->generateUniversalPage($newTown);
 
@@ -285,8 +286,7 @@ class PagesBuilder {
             }
         }
 
-
-        //        Core::log($this->newMoskvaPages);
+//        Core::log($this->newMoskvaPages);
     }
 
 
@@ -397,6 +397,14 @@ class PagesBuilder {
             'meta_keywords' => '',
             'type' => !empty($service->type) ? $service->type : '',
             'page_type' => $pageType,
+            'zn_1' => $lastTown->zn_1,
+            'etnohoronim_mn_p_da' => $lastTown->etnohoronim_mn_p_da,
+            'zn_2' => $lastTown->zn_2,
+            'zn_3' => $lastTown->zn_3,
+            'zn_4' => $lastTown->zn_4,
+            'zn_5' => $lastTown->zn_5,
+            'zn_6' => $lastTown->zn_6,
+            'zn_7' => $lastTown->zn_7
         );
 
         if (!empty($id)) {
@@ -430,7 +438,7 @@ class PagesBuilder {
             'type' => !empty($params->type) ? $params->type : '',
             'page_type' => $params->pageType,
             'zn_1' => !empty($params->zn_1) ? $params->zn_1 : '',
-            'etnohoronim_mn_p_da' => !empty($params->etnohoronim_mn_p_da) ? : '',
+            'etnohoronim_mn_p_da' => !empty($params->etnohoronim_mn_p_da) ? $params->etnohoronim_mn_p_da : '',
             'zn_2' => !empty($params->zn_2) ? $params->zn_2 : '',
             'zn_3' => !empty($params->zn_3) ? $params->zn_3 : '',
             'zn_4' => !empty($params->zn_4) ? $params->zn_4 : '',

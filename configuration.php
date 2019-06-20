@@ -6,6 +6,11 @@ $db_login = 'root';
 $db_password = 'root';
 $db_name = 'dp';
 
+//$db_server = 'localhost';
+//$db_login = 'u0339017_default';
+//$db_password = '6d3!K8jk';
+//$db_name = 'u0339017_default';
+//
 $databaseConfig = (object)array(
     'server' => 'localhost',
     'name' => 'dp',
