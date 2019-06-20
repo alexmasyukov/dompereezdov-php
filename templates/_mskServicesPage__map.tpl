@@ -23,7 +23,7 @@
             задав нужные адреса в поисковых строках. На карте отобразятся точки A и B с
             проложенным маршрутом.
             {* todo: fix $map_location формировался в breadcrumb *}
-            <div id="map" data-name="<?php echo $map_location; ?>"></div>
+            <div id="map" data-name="Россия,{$mapPath}"></div>
         </div>
 
         <div class="col-md-12 bl result">

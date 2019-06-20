@@ -22,13 +22,17 @@ include 'data/services.php';
 $log = true;
 
 $PageBuilder = new PagesBuilder();
-$PageBuilder->buildNewPages();
 $PageBuilder->cleanPagesTable();
 $PageBuilder->combineOldPageWithNewAdditionalParams();
 $PageBuilder->recordOldPagesToDB();
+$PageBuilder->buildNewPages();
 $PageBuilder->recordNewPagesToDB();
 $PageBuilder->buildNewMoskvaPages();
 $PageBuilder->recordMoskvaPagesToDB();
+$PageBuilder->buildBreadcrumbs();
+$PageBuilder->recordBreadcrumbs();
+$PageBuilder->buildTownStartAdminNames();
+$PageBuilder->recordTownStartAdminNames();
 
 class PagesBuilder {
     private $pages;
@@ -37,6 +41,8 @@ class PagesBuilder {
     private $services;
     private $newMOPages = array();
     private $newMoskvaPages = array();
+    private $breadcrumbs = array();
+    private $townStartAdminNames = array();
 
     /**
      * PagesBuilder constructor.
@@ -55,6 +61,135 @@ class PagesBuilder {
 
     }
 
+    private function getAllPages() {
+        $sql = "SELECT 
+                    id, parent_id, name, admin_name, cpu, type, page_type, cpu_path
+                FROM 
+                    pages 
+                ORDER BY 
+                    id";
+        $pages = Database::query($sql);
+        $convertPages = array();
+        foreach ($pages as $page) { //Обходим массив
+            $convertPages[$page['id']] = $page;
+        }
+
+        return $convertPages;
+    }
+
+
+    /**
+     * Возвращает путь до страницы разделенный символом * (включая саму страницу)
+     * @param $pageId
+     * @param $pages
+     * @param $field
+     * @return string
+     */
+    private function getPagePathAsText($pageId, $pages, $field) {
+        if (isset($pages[$pageId]['parent_id'])) {
+            if ($pages[$pageId]['parent_id'] == 0) return $pages[$pageId][$field];
+            return $this->getPagePathAsText($pages[$pageId]['parent_id'], $pages, $field) . '*' . $pages[$pageId][$field];
+        }
+    }
+
+
+    /**
+     * Возвращает массив с путем до страницы (включая саму страницу)
+     * @param $pageId
+     * @param $pages
+     * @param $field
+     * @return array
+     */
+    private function getPagePathAsArray($pageId, $pages, $field) {
+        $arr = explode('*', $this->getPagePathAsText($pageId, $pages, $field));
+        $arr[count($arr) - 1] = mb_ucfirst(trim($arr[count($arr) - 1]));
+        return $arr;
+    }
+
+    /**
+     * Генерирует основные массивы хлебных крошек
+     */
+    public function buildBreadcrumbs() {
+        $pages = $this->getAllPages();
+
+        foreach ($pages as $page) {
+            $this->breadcrumbs[$page['id']] = (object)array(
+                'id' => $page['id'],
+                'breadcrumb_ids' => implode('*', $this->getPagePathAsArray($page['id'], $pages, 'id')),
+                'breadcrumb_paths' => implode('*', $this->getPagePathAsArray($page['id'], $pages, 'cpu_path')),
+                'breadcrumb_names' => implode('*', $this->getPagePathAsArray($page['id'], $pages, 'name'))
+            );
+        }
+        //                Core::log($this->breadcrumbs);
+    }
+
+
+
+    /**
+     * Записывает сгенерированные хлебные крошки в БД
+     */
+    public function recordBreadcrumbs() {
+        foreach ($this->breadcrumbs as $breadcrumb) {
+            $this->recordUpdate($breadcrumb);
+        }
+    }
+
+
+    /**
+     * Генерирует такую штуку "Вывоз мебели (Московская область/Одинцовский район/Новоивановское)"
+     */
+    public function buildTownStartAdminNames() {
+        $pages = $this->getAllPages();
+
+        foreach ($pages as $page) {
+            $names_array = $this->getPagePathAsArray($page['id'], $pages, 'name');
+            if (count($names_array) > 1) {
+                $lastName = array_pop($names_array);
+            } else {
+                $lastName = $names_array[0];
+            }
+
+            $town_start_admin_name = $lastName . ' (' . implode('/', $names_array) . ')';
+
+            $this->townStartAdminNames[] = (object)array(
+                'id' => $page['id'],
+                'town_start_admin_name' => $town_start_admin_name
+            );
+        }
+
+        //        Core::log($this->townStartAdminNames);
+    }
+
+    /**
+     * Записывает штуки в БД
+     */
+    public function recordTownStartAdminNames() {
+        foreach ($this->townStartAdminNames as $item) {
+            $this->recordUpdate($item);
+        }
+    }
+
+
+    /**
+     * Обновляет данные в БД (исключая id из записи, но включае его в Where)
+     * @param $item
+     */
+    private function recordUpdate($item) {
+        $columns = array_keys((array)$item);
+        $values = array_values((array)$item);
+
+        $sql_part = array();
+        foreach ($columns as $key => $column) {
+            if ($key == 'id') continue;
+            $value = $values[$key];
+            $sql_part[] = "$column = '$value'";
+        }
+
+        $sql = "UPDATE pages SET " . implode(',', $sql_part) . "  WHERE id = $item->id";
+//        echo $sql.'<br>';
+        $result = Database::query($sql, 'asResult');
+    }
+
 
     public function combineOldPageWithNewAdditionalParams() {
         foreach ($this->pages as &$page) {
@@ -64,13 +199,13 @@ class PagesBuilder {
             if ($one[0] != ' '
                 && !mb_strpos($one, 'район')
                 && !mb_strpos($one, 'область')) {
-                echo '<b>'.$one.'</b>';
+                echo '<b>' . $one . '</b>';
                 foreach ($this->pagesMOForMerge as $pageForMerge) {
                     $two = trim(mb_strtolower($pageForMerge->name));
 
                     if ($one == $two) {
                         $page = (object)array_merge((array)$pageForMerge, (array)$page);
-                        echo ' = <span style="color: red">'.$two.'</span>';
+                        echo ' = <span style="color: red">' . $two . '</span>';
                         break;
                     }
                 }
@@ -87,6 +222,7 @@ class PagesBuilder {
 
         $moskvaTown = (object)array(
             'id' => $startID,
+            'parent_id' => 0,
             'name' => $GLOBALS['moskvaPage']->p_im,
             'h1' => $serviceDefault->h1,
             'cpu_path' => '/moskva/',
@@ -101,7 +237,6 @@ class PagesBuilder {
         // Записываем Москву
         $moskvaTown = (object)array_merge((array)$moskvaTown, (array)$GLOBALS['moskvaPage']);
         $this->newMoskvaPages[] = $this->generateUniversalPage($moskvaTown);
-
 
         // Генерируем страницы городов и услуг для них
         foreach ($this->moskvaPages as $key => $group) {
@@ -123,14 +258,26 @@ class PagesBuilder {
                     'pageType' => 'town',
                 );
                 $newTown = (object)array_merge((array)$newTown, (array)$town);
-//                Core::log($newTown);
-//                Core::log($this->generateUniversalPage($newTown));
+                //                Core::log($newTown);
+                //                Core::log($this->generateUniversalPage($newTown));
                 $this->newMoskvaPages[] = $this->generateUniversalPage($newTown);
 
                 // Формируем услуги для каждого города
                 foreach ($this->services as $sortService => $serviceItem) {
                     if ($serviceItem->pageType == 'service') {
                         $serviceItem->type = 'service';
+
+                        if (
+                            $serviceItem->cpu == 'gruzoperevozki' ||
+                            $serviceItem->cpu == 'vyvoz-mebeli' ||
+                            $serviceItem->cpu == 'perevozka-pianino' ||
+                            $serviceItem->cpu == 'kvartirnyj-pereezd'
+                        ) {
+                            $serviceItem->public = 1;
+                        } else {
+                            $serviceItem->public = 0;
+                        }
+
                         $startID++;
                         $this->newMoskvaPages[] = $this->generatePage($serviceItem, (object)$newTown, $sortService, 'service', $startID);
                     }
@@ -183,7 +330,7 @@ class PagesBuilder {
         $columns = [];
         $values = [];
         foreach ($pageColumns as $column) {
-            if ($page[$column] != '') {
+            if ($page[$column] !== '') {
                 $columns[] = $column;
                 $values[] = $page[$column];
             }
@@ -192,7 +339,7 @@ class PagesBuilder {
         $sql = 'INSERT INTO pages (' . implode(',', $columns) . ') 
                         VALUES (\'' . implode('\',\'', array_values((array)$values)) . '\')';
 
-        //        echo $sql;
+        //                echo $sql;
         $result = Database::query($sql, 'asResult');
     }
 
@@ -205,9 +352,15 @@ class PagesBuilder {
             if ($page->page_type == 'town') {
                 $lastTown = $page;
                 foreach ($this->services as $sort => $service) {
-                    if (!empty($service->isNewService) && $service->isNewService == true)
-                        $service->public = 0;
+                    if (!empty($service->isNewService) && $service->isNewService == true) {
+                        //                        Core::log($service);
+                        if ($service->cpu == 'kvartirnyj-pereezd') {
+                            $service->public = 1;
+                        } else {
+                            $service->public = 0;
+                        }
                         $this->newMOPages[] = $this->generatePage($service, $lastTown, $sort);
+                    }
                 }
             }
         }

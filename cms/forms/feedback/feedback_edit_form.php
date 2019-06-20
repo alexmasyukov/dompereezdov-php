@@ -358,9 +358,11 @@ $close_onclick = "
                                                     ></textarea>
                                                 </div>
 
+                                            </div>
+                                            <div class="form-group">
 
                                                 <label class="col-md-1 control-label">Где оказывались услуги:</label>
-                                                <div class="col-md-2">
+                                                <div class="col-md-4">
                                                     <textarea
                                                             type="text"
                                                             class="form-control"
@@ -370,7 +372,7 @@ $close_onclick = "
                                                             data-table-field="where_place"
                                                             id="where_place"
                                                             placeholder=""
-                                                            rows=1
+                                                            rows=2
                                                             tabindex="10"
                                                     ></textarea>
                                                 </div>

@@ -20,11 +20,6 @@ class PageContent extends Page {
     public function view($page) {
         parent::view();
 
-//        Core::log($page);
-
-        // todo: сделать замену всех телефонов в БД на переменные
-        // todo: сделать функцию замены номеров на переменные
-
         // Обновляем хлебные крошки, добавляя название страницы в конец
         $this->updateBreadcrumb($page);
 

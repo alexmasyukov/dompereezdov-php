@@ -1,5 +1,6 @@
 <?php
 
+// Вместо заказ газели сделать Грузовое такси
 require $root . '/core/class.database.inc';
 
 ?>

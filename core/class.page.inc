@@ -211,6 +211,8 @@ class Page {
     protected function view() {
         Core::getSmarty()->assign('version', $this->version);
         Core::getSmarty()->assign('year', $this->year);
+        Core::getSmarty()->assign('date_Y_m_d', date('Y-m-d'));
+        Core::getSmarty()->assign('review_form_town_start_id', 1233);
         Core::getSmarty()->assign('HTTP_HOST', Core::getUrl()->host);
         Core::getSmarty()->assign('REQUEST_URI', Core::getUrl()->urlPath);
 

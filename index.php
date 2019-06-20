@@ -19,7 +19,7 @@ require $root . '/frontend/libs/smarty/libs/Smarty.class.php';
 $core = new Core();
 
 // start html compressed
-ob_start('compressHtml');
+//ob_start('compressHtml');
 
 
 switch (Core::getUrl()->module) {
@@ -93,19 +93,3 @@ function compressHtml($compress) {
     $res_compress = preg_replace('/<!--(.*?)-->/', '', $tree);
     return $res_compress;
 }
-
-//
-//function view_404() {
-//    global $db, $root, $link, $module, $action;
-//    $link = '404';
-//    $module = '404';
-//    $action = '';
-//    header("HTTP/1.x 404 Not Found");
-//    include_once($root . "/frontend/pages/html_open.php");
-//    include_once($root . "/frontend/pages/header.php");
-//    echo '';
-//    include_once($root . "/frontend/pages/footer.php");
-//    include_once($root . "/frontend/pages/html_close.php");
-//    $db = null;
-//    exit;
-//}

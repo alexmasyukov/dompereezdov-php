@@ -54,19 +54,20 @@
                                     class="form-control"
                                     placeholder=""
                                     id="where_place"
-                                    value="<?php
-                                    if ($page_id <> 1233 && $page_parent_id <> 1233) {
-                                        if (strpos($page_name, '    ') !== false) {
-                                            $select_town = $page_parent_id;
-                                        } else {
-                                            $select_town = $page_id;
-                                        }
-                                    }
-                                    include_once $root . '/cms/forms/feedback/get_town_name.php'; ?>"
+                                    value="{$town_start_admin_name}"
                                     data-type="form-val"
                                     data-necessarily="yes"/>
-
                         </div>
+
+
+                        {*<?php*}
+                        {*if ($page_id <> 1233 && $page_parent_id <> 1233) {*}
+                        {*if (strpos($page_name, '    ') !== false) {*}
+                        {*$select_town = $page_parent_id;*}
+                        {* else *}
+                        {*$select_town = $page_id;*}
+
+                        {*include_once $root . '/cms/forms/feedback/get_town_name.php'; ?>*}
 
 
                         <div class="col-sm-12">
@@ -113,7 +114,7 @@
                                 id="town_start_id"
                                 data-type="form-val"
                                 data-necessarily="yes"
-                                value="1233"
+                                value="{$review_form_town_start_id}"
                                 style="display: none; opacity: 0;"
                         />
 
@@ -135,7 +136,7 @@
                                 id="date"
                                 data-necessarily="yes"
                                 data-type="form-val"
-                                value="<?php echo date('Y-m-d'); ?>"
+                                value="{$date_Y_m_d}"
                                 style="display: none; opacity: 0;"/>
 
                         <div class="col-xs-12">

@@ -42,15 +42,17 @@
                             </div>
                         {/if}
 
-                        {* todo: здесь должен быть список из родительских нас пунктов с их ссылками
-                                    Московская область
-                                    Балашиха
-                                    breadcrumb?
-                         *}
-
                         <div class="bl text text-bottom">
                             {$page->bottom_text}
                         </div>
+
+                        {if $page->breadcrumb_names}
+                            <div class="bl mini-breadcumb">
+                                {foreach from=$page->breadcrumb_names key=$k item=$item}
+                                    <a href="{$page->breadcrumb_paths[$k]}">{$item}</a>
+                                {/foreach}
+                            </div>
+                        {/if}
 
                         {if $page->cpu != 'vyvoz-mebeli'}
                             {include '_mskServicesPage__map.tpl'}

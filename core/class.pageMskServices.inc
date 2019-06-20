@@ -497,7 +497,6 @@ class PageMskServices extends Page {
         $page = $this->replaceWordsInTextOnLinks($page);
         $page = $this->setUCFirstInTexts($page);
 
-//        Core::log($page);
 
         // Обновляем хлебные крошки, добавляя название страницы в конец
         // todo: это нужно сделать для МО и Москвы
@@ -507,6 +506,15 @@ class PageMskServices extends Page {
         $this->buildReviewsOnLeftBlock(array(
             'townId' => $page->id
         ));
+
+        Core::getSmarty()->assign('mapPath', str_replace('*', ',', $page->breadcrumb_names));
+        Core::getSmarty()->assign('town_start_admin_name', $page->town_start_admin_name);
+        Core::getSmarty()->assign('review_form_town_start_id', $page->id);
+
+        $page->breadcrumb_names = explode('*', $page->breadcrumb_names);
+        $page->breadcrumb_paths = explode('*', $page->breadcrumb_paths);
+        array_pop($page->breadcrumb_names);
+        array_pop($page->breadcrumb_paths);
 
         Core::getSmarty()->assign('page', $page);
         Core::getSmarty()->assign('metaTitle', $page->meta_title);
