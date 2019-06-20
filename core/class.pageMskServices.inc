@@ -447,7 +447,6 @@ class PageMskServices extends Page {
         return $page;
     }
 
-
     /**
      * Отображаем страницу
      */
@@ -469,6 +468,7 @@ class PageMskServices extends Page {
             Core::getSmarty()->assign('photogallery', Photogallery::getImages($page->galleryCategoryID));
         }
 
+        // todo не показывать отзывы на странице Работа
 
         switch ($page->page_type) {
             case 'service':
@@ -504,7 +504,13 @@ class PageMskServices extends Page {
 //        Core::log($page);
 
         // Обновляем хлебные крошки, добавляя название страницы в конец
+        // todo: это нужно сделать для МО и Москвы
         $this->updateBreadcrumb($page);
+
+        // Формируем отзывы слева
+        $this->buildReviewsOnLeftBlock(array(
+            'townId' => $page->id
+        ));
 
         Core::getSmarty()->assign('page', $page);
         Core::getSmarty()->assign('metaTitle', $page->meta_title);

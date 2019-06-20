@@ -14,5 +14,5 @@
         {/if}
     </div>
 
-    <a class="link all_feedback" href="/otzyvy/">Читать все отзывы ({$countReviews})</a>
+    <a class="link all_feedback" href="/otzyvy/">Читать все отзывы ({$countAllReviews})</a>
 </div>

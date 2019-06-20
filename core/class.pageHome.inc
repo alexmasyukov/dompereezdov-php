@@ -102,6 +102,12 @@ class PageHome extends Page {
 //        $page_id = 1233;
 //        $feedback_usluga = 'Грузоперевозки';
 
+        // Формируем отзывы слева
+        $this->buildReviewsOnLeftBlock();
+
+        // Не нужно показывать хлебные крошки на главной странице
+        Core::getSmarty()->assign('breadcrumb', '');
+
         Core::getSmarty()->assign('metaTitle', $page->meta_title);
         Core::getSmarty()->assign('metaDescription', $page->meta_description);
         Core::getSmarty()->assign('metaKeywords', $page->meta_keywords);

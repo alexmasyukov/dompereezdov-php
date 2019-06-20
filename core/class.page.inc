@@ -174,11 +174,28 @@ class Page {
         return $breadcrumb;
     }
 
+    /**
+     * Генерирует отзывы для левого блока
+     * Вызывается из каждого класса страницы class.pageXXXXXXX.inc ,
+     * имеет массив с параметрами отображения и получения, что гибко для классов
+     * @param array $params
+     */
+    protected function buildReviewsOnLeftBlock($params = array()) {
+        if (empty($params['limit'])) {
+            $params['limit'] = $GLOBALS['reviewLimitOnLeftBlock'];
+        }
+
+        // Отображаем количество всех отзывов (Москва и МО услуги свой класс)
+        $reviews = Reviews::getReviews($params);
+        Core::getSmarty()->assign('reviewsOfLeftBlock', $reviews);
+    }
+
     // todo do it funcion
     private function getPageType() {
         // in template {if $pageType neq 'rabota'}
         return '';
     }
+
 
     /**
      * Выводим страницу. Указываем переменные,
@@ -211,28 +228,12 @@ class Page {
         // Генерируем хлебные крошки
         Core::getSmarty()->assign('breadcrumb', $this->generateBreadcrumbHTML(Core::getUrl()));
 
-        // Отзывы
-        // Не показываем отзывы на странице Вакансии (любого нас. пункта)
-        $pageType = $this->getPageType();
-        Core::getSmarty()->assign('pageType', $pageType);
-        if ($pageType != 'rabota') {
-            // Отзывы для левого блока _left__reviews_block.tpl
-            // todo: выводить количество отзывов исходя из категории
-//            Core::getSmarty()->assign('countReviews', Reviews::getInstance()->getReviewsCount());
-
-            Core::getSmarty()->assign('reviewsOfLeftBlock', Reviews::getReviews(array(
-                'limit' => $GLOBALS['reviewLimitOnLeftBlock']
-            )));
-        }
-
-
-        // todo Fix breadcrumb in tample homePage.tpl $breadcrumb
-
-
         Core::log($this->psk2Check());
         if ($this->psk2Check()) {
             Core::getSmarty()->assign('canonical', 'https://' . Core::getUrl()->host . Core::getUrl()->urlPath);
         }
+
+        Core::getSmarty()->assign('countAllReviews', Reviews::getInstance()->getReviewsAllCount()); //$reviews->count);
 
         // todo Так работать правильно не будет, у нас отзывы постраничные
         // Если есть параметры в запросе, выводим в шаблоне <link rel="canonical" href="" />

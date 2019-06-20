@@ -56,7 +56,8 @@ class PageCars extends Page {
             Core::getSmarty()->assign('metaKeywords', $generalAndOtherCars->generalCar->meta_keywords);
         }
 
-        // todo: fix breadcrumb
+        // Формируем отзывы слева
+        $this->buildReviewsOnLeftBlock();
 
         Core::getSmarty()->display('carsPage.tpl');
     }

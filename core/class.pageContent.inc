@@ -34,6 +34,9 @@ class PageContent extends Page {
 
         $page->text = Core::charsDecode($page->description);
 
+        // Формируем отзывы слева
+        $this->buildReviewsOnLeftBlock();
+
         Core::getSmarty()->assign('page', $page);
         Core::getSmarty()->display('contentPage.tpl');
     }

@@ -60,16 +60,17 @@ class PagesBuilder {
         foreach ($this->pages as &$page) {
             $one = mb_strtolower($page->name);
 
+
             if ($one[0] != ' '
                 && !mb_strpos($one, 'район')
                 && !mb_strpos($one, 'область')) {
-
+                echo '<b>'.$one.'</b>';
                 foreach ($this->pagesMOForMerge as $pageForMerge) {
                     $two = trim(mb_strtolower($pageForMerge->name));
 
                     if ($one == $two) {
                         $page = (object)array_merge((array)$pageForMerge, (array)$page);
-                        echo $one . ' = '.$two;
+                        echo ' = <span style="color: red">'.$two.'</span>';
                         break;
                     }
                 }

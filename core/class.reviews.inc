@@ -45,27 +45,24 @@ class Reviews {
     }
 
     /**
-     * Возврадает отзывы
+     * Возвращает отзывы
      * @param bool $params
      * @return array
      */
     public static function getReviews($params = false) {
         if (!empty($params)) $params = (object)$params;
-//        Core::log($params);
+        //        Core::log($params);
 
+        $limit = 10;
         if (!empty($params->limit)) {
             $limit = $params->limit;
-        } else {
-            $limit = 10;
         }
         $sql_limit = ' LIMIT ' . $limit;
 
 
-
+        $sql_pain = '';
         if (!empty($params->pain)) {
             $sql_pain = " AND pain LIKE '%$params->pain%' ";
-        } else {
-            $sql_pain = '';
         }
 
 
@@ -77,26 +74,41 @@ class Reviews {
             $sql_limit = " LIMIT $start, " . $limit;
         }
 
+        $sql_towns = '';
+        if (!empty($params->townId)) {
+            $sql_towns = " AND town_start_id = $params->townId ";
+        }
 
-        $sql = "SELECT
-                   *
-                FROM
+        $sqlSelector = 'SELECT * ';
+        $sql = " FROM
                     feedback
                 WHERE
                     public=1
                     $sql_pain
+                    $sql_towns
                 ORDER BY
-                    date DESC
-                    $sql_limit";
+                    date DESC";
 
-//        echo $sql;
-
-        $reviews = Database::query($sql, 'withCount');
+        $reviews = Database::query($sqlSelector . $sql . $sql_limit, 'withCount');
         if ($reviews->rowCount > 0) {
             foreach ($reviews->result as &$review) {
                 $review = (object)$review;
                 $review->date = russain_date($review->date);
+                $review->comment = Core::charsDecode($review->comment);
+                $review->why = Core::charsDecode($review->why);
             }
+
+            if (!empty($params->returnCount)) {
+                // ЭТО МОЖНО ИСПОЛЬЗОВАТЬ ТОГДА: когда нам нужно получить
+                // количество всех отызвов по выбранным параметрам
+                // Получаем общее количество таких отзывов
+                $sqlSelector = 'SELECT COUNT(*) ';
+                $reviewsForCount = Database::query($sqlSelector . $sql, 'asResult');
+
+                return $reviewsForCount->fetchColumn();
+            }
+
+
             return $reviews->result;
         }
 
@@ -105,21 +117,35 @@ class Reviews {
 
 
     /**
-     * @param $pain
-     * @return int
+     * @param $params
+     * @return array
      */
-    public static function getReviewsCount($pain) {
-        $sql = 'SELECT 
-                    COUNT(*) 
-                FROM 
-                    feedback 
-                WHERE 
-                    public = 1 
-                    AND date <= \'' . date('Y-m-d') . '\' 
-                    AND pain LIKE \'%' . $pain . '%\'
-        ';
-        $reviews = Database::query($sql, 'asResult');
-        return $reviews->fetchColumn() - 1;
+    public static function getReviewsCount($params) {
+        Core::log($params);
+        $additParams = array(
+            'returnCount' => true
+        );
+
+        $params = array_merge($params, $additParams);
+        return Reviews::getReviews($params);
+        //
+        //
+        //
+        //        Core::log($params);
+
+        //        return Reviews::getReviews();
+
+        //        $sql = "SELECT
+        //                    COUNT(*)
+        //                FROM
+        //                    feedback
+        //                WHERE
+        //                    public = 1
+        //                    AND date <= \'' . date('Y-m-d') . '\'
+        //
+        //        ";
+        //        $reviews = Database::query($sql, 'asResult');
+        //        return $reviews->fetchColumn() - 1;
     }
 
 
@@ -128,21 +154,26 @@ class Reviews {
      * @param $limit
      * @return mixed
      */
-    public static function getPagesCount($reviewsCount, $limit) {
+    public
+    static function getPagesCount($reviewsCount, $limit) {
         return ceil($reviewsCount / $limit);
     }
+
 
     /**
      * @return mixed
      */
-    public static function getCurrentPage() {
+    public
+    static function getCurrentPage() {
         return self::$currentPage;
     }
+
 
     /**
      * @return int
      */
-    public static function getReviewsAllCount() {
+    public
+    static function getReviewsAllCount() {
         return self::$reviewsAllCount;
     }
 }

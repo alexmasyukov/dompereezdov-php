@@ -77,22 +77,17 @@ class PageReviews extends Page {
         Core::getSmarty()->assign('page', $this->page);
         Core::getSmarty()->assign('painTable', self::$painTable);
 
-        //        $reviews = array();
-        //        $Reviews = new Reviews((object)array(
-        //            'limit' => 10,
-        //            // Когда нам нужно скрыть некоторые характеристики отзыва
-        //            'unvisibleFields' => ['zakazannaya_usluga']
-        //        ));
-        //        $reviews = Reviews::getInstance()->getReviews($_REQUEST['page']);
-        //        Core::log($Reviews->getReviews());
 
-        //
-
-
-        // Установим лимит отображения отзывов на страницу
         $currentPage = Core::toInt($_REQUEST['page']) == 0 ? 1 : Core::toInt($_REQUEST['page']);
 
-        if (!$this->getPainOfThisPage(Core::getUrl()->action)) {
+        $pain = $this->getPainOfThisPage(Core::getUrl()->action);
+        $reviewsParams = array(
+            'currentPage' => $currentPage,
+            'limit' => $GLOBALS['reviewLimitOnPage'],
+            'pain' => !empty($pain) ? $pain->title : false
+        );
+
+        if (!$pain) {
 
             // Если это главная страница
             $countReviews = Reviews::getInstance()->getReviewsAllCount();
@@ -100,8 +95,7 @@ class PageReviews extends Page {
         } else {
 
             // Если это страница Боли
-            $pain = $this->getPainOfThisPage(Core::getUrl()->action);
-            $countReviews = Reviews::getInstance()->getReviewsCount($pain->title);
+            $countReviews = Reviews::getReviewsCount($reviewsParams);
             $countReviewsPages = Reviews::getPagesCount($countReviews, $GLOBALS['reviewLimitOnPage']);
 
             // Добавляем cpu боли в ссылку в элементы пагинации
@@ -112,13 +106,9 @@ class PageReviews extends Page {
         if ($currentPage > $countReviewsPages) Page::view404();
 
         Core::getSmarty()->assign('currentPage', $currentPage);
-        Core::getSmarty()->assign('countReviewsPages', $countReviewsPages);
         Core::getSmarty()->assign('countReviews', $countReviews);
-        Core::getSmarty()->assign('reviews', Reviews::getReviews(array(
-            'currentPage' => $currentPage,
-            'limit' => $GLOBALS['reviewLimitOnPage'],
-            'pain' => !empty($pain) ? $pain->title : false
-        )));
+        Core::getSmarty()->assign('countReviewsPages', $countReviewsPages);
+        Core::getSmarty()->assign('reviews', Reviews::getReviews($reviewsParams));
 
         // Скрываем надпись с левого блока "На данной странице еще не оставляли отзывов"
         // так как мы находимся на общей странице отзывов (или ее подразделе)
