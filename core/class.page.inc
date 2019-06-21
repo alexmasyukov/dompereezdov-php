@@ -227,9 +227,15 @@ class Page {
         Core::getSmarty()->assign('version', $this->version);
         Core::getSmarty()->assign('year', $this->year);
         Core::getSmarty()->assign('date_Y_m_d', date('Y-m-d'));
-        Core::getSmarty()->assign('review_form_town_start_id', 1233);
         Core::getSmarty()->assign('HTTP_HOST', Core::getUrl()->host);
         Core::getSmarty()->assign('REQUEST_URI', Core::getUrl()->urlPath);
+
+        // Установим название населенного пункта в форме добавления отзыва,
+        // которое будет по умолчанию на всех страницах, кроме Услуг и городов МО и М
+        Core::getSmarty()->assign('town_start_admin_name', 'Москва или Московская область');
+        // id города по умолчанию
+        Core::getSmarty()->assign('review_form_town_start_id', 10000);
+
 
         // Контакты для _header.tpl
         Core::getSmarty()->assign('phoneOneNumber', $GLOBALS['phones']->phone1->number);

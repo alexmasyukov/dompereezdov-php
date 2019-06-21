@@ -141,7 +141,14 @@ class PagesBuilder {
         $pages = $this->getAllPages();
 
         foreach ($pages as $page) {
-            $names_array = $this->getPagePathAsArray($page['id'], $pages, 'name');
+
+            // Если это услуга, генерируем имя по данным родителя
+            if ($page['page_type'] !== 'service') {
+                $names_array = $this->getPagePathAsArray($page['id'], $pages, 'name');
+            } else {
+                $names_array = $this->getPagePathAsArray($page['parent_id'], $pages, 'name');
+            }
+
             if (count($names_array) > 1) {
                 $lastName = array_pop($names_array);
             } else {
