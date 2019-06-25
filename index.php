@@ -4,12 +4,12 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $log = true;
 
 // todo соединить отзывы
-// todo повторить логику работы отзывов
-// todo сделать всю логику отзывов
+// повторить логику работы отзывов
+// сделать всю логику отзывов
 // todo сформировать admin_name
-// todo сделать sitemap
-// todo сделать rss длф турбо страниц
-// todo посмотреть на каком веб местере настроены турбо страницы
+// сделать sitemap
+// todo сделать rss для турбо страниц и обновить его в вебмастере
+// посмотреть на каком веб местере настроены турбо страницы
 // todo галереи
 // поправить страницы отзывов пагинацию
 // сделать келлми
@@ -65,15 +65,6 @@ switch (Core::getUrl()->module) {
         require $root . '/core/class.sitemap.inc';
         Sitemap::view();
         break;
-    // todo: do sitemap
-    //    case 'sitemap':
-    //        $sitemap = new Sitemap($core);
-    //        $sitemap->view();
-
-//    include_once($root . '/frontend/php/special/sitemap.php');
-//    $db = null;
-//    break;
-    //        break;
     //      todo rss for turbo pages
     //    case 'rss':
     //        break;

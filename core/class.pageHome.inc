@@ -96,7 +96,10 @@ class PageHome extends Page {
             . '</div><div class="cleafix"></div>', $page->text);
 
         // Формируем отзывы слева
-        $this->buildReviewsOnLeftBlock();
+        $this->buildReviewsOnLeftBlock(array(
+            'townId' => 10000, // Если выбрана Москва (id 10000) отображаются на главной странице https://dp.local/
+            'service' => 'Грузоперевозки'
+        ));
 
         // Не нужно показывать хлебные крошки на главной странице
         Core::getSmarty()->assign('breadcrumb', '');

@@ -48,6 +48,16 @@ class Core {
                 self::$url->urlQuery = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
                 // Разбиваем виртуальный URL по символу "/"
                 self::$url->uriParts = explode('/', trim(self::$url->urlPath, '/'));
+
+                self::$url->lastUriPart = '';
+                if (!empty(self::$url->uriParts)) {
+                    if (is_array(self::$url->uriParts)) {
+                        if (count(self::$url->uriParts)) {
+                            self::$url->lastUriPart = self::$url->uriParts[count(self::$url->uriParts) - 1];
+                        }
+                    }
+                }
+
                 //print_r($uri_parts);
                 self::$url->module = array_shift(self::$url->uriParts); // Получили имя модуля (первое значение массива у удаляем его из массива)
                 self::$url->action = array_shift(self::$url->uriParts); // Получили имя действия

@@ -67,6 +67,11 @@ class PageReviews extends Page {
     }
 
 
+    public static function getReviewsForLeftBlock($params) {
+
+    }
+
+
     /**
      * Отображаем основной шаблон
      */
