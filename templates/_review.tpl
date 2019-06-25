@@ -56,5 +56,14 @@
         {/if}
     {/if}
 
+    {if $review->route neq '' || $review->where_place neq ''}
+        {if $review->route eq ''}
+            <p><span>Где оказывались услуги:</span> {$review->where_place}</p>
+        {/if}
+        {if $review->where_place eq ''}
+            <p><span>Маршрут:</span> {$review->route}</p>
+        {/if}
+    {/if}
+
     <div class="polosa"></div>
 </div>
