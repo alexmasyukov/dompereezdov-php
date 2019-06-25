@@ -17,6 +17,7 @@ $sql = "SELECT
             pages
         WHERE
             page_type <> 'service'
+          
         ORDER BY 
             name"; //WHERE public=1
 $pages = Database::query($sql, 'withCount');

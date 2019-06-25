@@ -95,13 +95,6 @@ class PageHome extends Page {
             . $homeBlocks[2][1]
             . '</div><div class="cleafix"></div>', $page->text);
 
-
-        // todo Fix it
-//        # Настройки для отзывов
-//        $page_type = 'moscow';
-//        $page_id = 1233;
-//        $feedback_usluga = 'Грузоперевозки';
-
         // Формируем отзывы слева
         $this->buildReviewsOnLeftBlock();
 

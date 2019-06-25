@@ -279,7 +279,8 @@ class PagesBuilder {
                             $serviceItem->cpu == 'gruzoperevozki' ||
                             $serviceItem->cpu == 'vyvoz-mebeli' ||
                             $serviceItem->cpu == 'perevozka-pianino' ||
-                            $serviceItem->cpu == 'kvartirnyj-pereezd'
+                            $serviceItem->cpu == 'kvartirnyj-pereezd' ||
+                            $serviceItem->cpu == 'ofisnyj-pereezd'
                         ) {
                             $serviceItem->public = 1;
                         } else {
@@ -361,7 +362,10 @@ class PagesBuilder {
                 foreach ($this->services as $sort => $service) {
                     if (!empty($service->isNewService) && $service->isNewService == true) {
                         //                        Core::log($service);
-                        if ($service->cpu == 'kvartirnyj-pereezd') {
+                        if (
+                            $service->cpu == 'kvartirnyj-pereezd' ||
+                            $service->cpu == 'ofisnyj-pereezd'
+                        ) {
                             $service->public = 1;
                         } else {
                             $service->public = 0;

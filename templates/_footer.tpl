@@ -2,7 +2,6 @@
     {* todo: include form callme *}
     <?php include_once($root . '/frontend/modules/callme/callme_form.php'); ?>
 
-    {* todo: fix add review form *}
     <div class="modal fade modal_question" id="feedback_modal">
         <div class="modal-dialog">
             <div class="modal-content">

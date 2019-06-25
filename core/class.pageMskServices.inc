@@ -464,8 +464,6 @@ class PageMskServices extends Page {
             Core::getSmarty()->assign('photogallery', Photogallery::getImages($page->galleryCategoryID));
         }
 
-        // todo не показывать отзывы на странице Работа
-
         switch ($page->page_type) {
             case 'service':
                 // Так как это дочерняя страница - услуга, чтобы нам узнать имя этого населенного пункта,
@@ -515,8 +513,6 @@ class PageMskServices extends Page {
         ));
 
         Core::getSmarty()->assign('mapPath', str_replace('*', ',', $page->breadcrumb_names));
-        Core::getSmarty()->assign('town_start_admin_name', $page->town_start_admin_name);
-        Core::getSmarty()->assign('review_form_town_start_id', $page->id);
 
         $page->breadcrumb_names = explode('*', $page->breadcrumb_names);
         $page->breadcrumb_paths = explode('*', $page->breadcrumb_paths);
