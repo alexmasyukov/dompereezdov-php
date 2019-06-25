@@ -52,7 +52,6 @@ switch (Core::getUrl()->module) {
         $reviewsPage = new PageReviews(Core::getUrl()->action);
         $reviewsPage->view();
         break;
-
     case 'moskovskaya-oblast':
     case 'moskva':
         require $root . '/core/class.cars.inc';
@@ -60,6 +59,11 @@ switch (Core::getUrl()->module) {
         require $root . '/core/class.pageMskServices.inc';
         $mskServicesPage = new PageMskServices();
         $mskServicesPage->view();
+        break;
+    case 'sitemap.xml':
+        header('Content-Type: application/xml; charset=utf-8');
+        require $root . '/core/class.sitemap.inc';
+        Sitemap::view();
         break;
     // todo: do sitemap
     //    case 'sitemap':
