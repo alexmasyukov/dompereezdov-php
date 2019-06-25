@@ -95,6 +95,8 @@ class Reviews {
                 ORDER BY
                     date DESC";
 
+//        echo $sqlSelector . $sql;
+
         if (!empty($params->returnCount)) {
             // ЭТО МОЖНО ИСПОЛЬЗОВАТЬ ТОГДА: когда нам нужно получить
             // количество всех отызвов по выбранным параметрам

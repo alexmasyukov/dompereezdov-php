@@ -397,11 +397,20 @@ $close_onclick = "
                                                             style="width: 370px !important"
                                                             tabindex="11"
                                                     >
-                                                        <option value="Транспортные услуги">Транспортные услуги</option>
-                                                        <option value="Грузоперевозки">Грузоперевозки</option>
-                                                        <option value="Переезды">Переезды</option>
-                                                        <option value="Вывоз мебели">Вывоз мебели</option>
-                                                        <option value="Перевозка пианино">Перевозка пианино</option>
+                                                        <?php
+
+                                                        include_once $root . '/core/class.page.inc';
+                                                        include_once $root . '/core/class.pageMskServices.inc';
+                                                        $services = array();
+                                                        foreach (PageMskServices::$servicesTable as $service) {
+                                                            $services[] = $service['adminPanelReviewsFormInput_usluga'];
+                                                        }
+
+                                                        foreach (array_unique($services) as $service) {
+                                                            echo '<option value="' . $service . '">' . $service . '</option>';
+                                                        }
+
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -435,17 +444,17 @@ $close_onclick = "
                                                         </option>
                                                     </select>
                                                     <div class=""></div>
-<!--                                                    <input-->
-<!--                                                            type="hidden"-->
-<!--                                                            class="form-control"-->
-<!--                                                            data-massive-element-type="input"-->
-<!--                                                            data-default-value=""-->
-<!--                                                            data-necessarily="true"-->
-<!--                                                            data-table-field="town_start_id"-->
-<!--                                                            id="town_start_id"-->
-<!--                                                            placeholder=""-->
-<!--                                                            hidden-->
-<!--                                                    />-->
+                                                    <!--                                                    <input-->
+                                                    <!--                                                            type="hidden"-->
+                                                    <!--                                                            class="form-control"-->
+                                                    <!--                                                            data-massive-element-type="input"-->
+                                                    <!--                                                            data-default-value=""-->
+                                                    <!--                                                            data-necessarily="true"-->
+                                                    <!--                                                            data-table-field="town_start_id"-->
+                                                    <!--                                                            id="town_start_id"-->
+                                                    <!--                                                            placeholder=""-->
+                                                    <!--                                                            hidden-->
+                                                    <!--                                                    />-->
 
 
                                                     <!--                                                    <select-->

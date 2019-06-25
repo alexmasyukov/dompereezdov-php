@@ -7,11 +7,14 @@ $log = true;
 // повторить логику работы отзывов
 // сделать всю логику отзывов
 // todo сформировать admin_name
-// todo отзывы в ПУ
+// отзывы в ПУ
 // сделать sitemap
 // todo сделать rss для турбо страниц и обновить его в вебмастере
 // посмотреть на каком веб местере настроены турбо страницы
 // todo галереи
+//   видимо шаблонизатор крашит путь
+//   https://www.dompereezdov.ru/moskovskaya-oblast/volokolamskiy-rayon/volokolamsk/gruzoperevozki/
+//   https://www.dompereezdov.ru/moskovskaya-oblast/images/my_works_images/works_images/85afadb8da836e6f3997cf331151d26228340.jpg/
 // поправить страницы отзывов пагинацию
 // сделать келлми
 

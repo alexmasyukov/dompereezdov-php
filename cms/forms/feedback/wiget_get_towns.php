@@ -17,19 +17,35 @@ $sql = "SELECT
             pages
         WHERE
             page_type <> 'service'
-          
+            AND public=1
+            AND parent_id < 10000
+            AND id < 10000
         ORDER BY 
-            name"; //WHERE public=1
-$pages = Database::query($sql, 'withCount');
-if ($pages->rowCount > 0) {
-    foreach ($pages->result as &$page) {
-        //            if ($select_town != '' && $select_town == $page["id"]) {
-        //                $selected = ' selected ';
-        //            } else {
-        //                $selected = '';
-        //            }
+            name";
+$pages = Database::query($sql);
+foreach ($pages as $page) {
+    echo '<option value="' . $page["id"] . '">' . trim($page["name"]) . '</option>';
+}
 
-        $selected = '';
-        echo '<option value="' . $page["id"] . '" ' . $selected . '>' . trim($page["name"]) . '</option>';
-    }
+
+$sql = "SELECT 
+            id, 
+            parent_id, 
+            town_start_admin_name as name, 
+            page_type
+        FROM 
+            pages
+        WHERE
+            page_type <> 'service'
+            AND  type <> 'raion'
+            AND type <> 'okrug'
+            AND public=1
+            AND parent_id >= 10000
+            OR parent_id = 0
+            AND id >= 10000 
+        ORDER BY 
+            id";
+$pages = Database::query($sql);
+foreach ($pages as $page) {
+    echo '<option value="' . $page["id"] . '">' . trim($page["name"]) . '</option>';
 }

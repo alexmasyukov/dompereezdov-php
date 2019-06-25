@@ -7,7 +7,7 @@
  */
 
 class PageMskServices extends Page {
-    private static $servicesTable = array(
+    public static $servicesTable = array(
         'gruzoperevozki' => array(
             'pageType' => 'service',
             'cpu' => 'gruzoperevozki',
@@ -19,7 +19,8 @@ class PageMskServices extends Page {
             'titlePrice' => 'Цены на грузоперевозки',
             'titleGallery' => 'Фото машин из нашего парка',
             'titleMap' => 'Расчет стоимости перевозки в #нас-пункт-пп#',
-            'reviewsServiceTitle' => 'Грузоперевозки'
+            'reviewsServiceTitle' => 'Грузоперевозки',
+            'adminPanelReviewsFormInput_usluga' => 'Грузоперевозки'
         ),
         'vyvoz-mebeli' => array(
             'pageType' => 'service',
@@ -32,7 +33,8 @@ class PageMskServices extends Page {
             'titlePrice' => 'Цены на грузоперевозки',
             'titleGallery' => 'Фото вывоза мебели',
             'titleMap' => '',
-            'reviewsServiceTitle' => 'Вывоз мебели'
+            'reviewsServiceTitle' => 'Вывоз мебели',
+            'adminPanelReviewsFormInput_usluga' => 'Вывоз мебели'
         ),
 
         // Вот эту услугу выключаем даже на готовых данных, вместо нее ниже !!!
@@ -64,7 +66,8 @@ class PageMskServices extends Page {
             'titleGallery' => 'Фото машин из нашего автопарка',
             'titleMap' => 'Расчет стоимости грузового такси в #нас-пункт-пп#',
             'reviewsServiceTitle' => 'Грузовое такси',
-            'isNewService' => true
+            'isNewService' => true,
+            'adminPanelReviewsFormInput_usluga' => 'Грузовое такси'
         ),
         'kvartirnyj-pereezd' => array(
             'pageType' => 'service',
@@ -78,7 +81,8 @@ class PageMskServices extends Page {
             'titleGallery' => 'Фото машин для квартирного переезда',
             'titleMap' => 'Расчет стоимости переезда квартиры в #нас-пункт-пп#',
             'reviewsServiceTitle' => 'Квартирный переезд',
-            'isNewService' => true
+            'isNewService' => true,
+            'adminPanelReviewsFormInput_usluga' => 'Переезды'
         ),
         'dachnyj-pereezd' => array(
             'pageType' => 'service',
@@ -92,7 +96,8 @@ class PageMskServices extends Page {
             'titleGallery' => 'Фото машин для дачного переезда',
             'titleMap' => 'Расчет стоимости переезда на дачу в #нас-пункт-пп#',
             'reviewsServiceTitle' => 'Дачный переезд',
-            'isNewService' => true
+            'isNewService' => true,
+            'adminPanelReviewsFormInput_usluga' => 'Переезды'
         ),
         'ofisnyj-pereezd' => array(
             'pageType' => 'service',
@@ -106,7 +111,8 @@ class PageMskServices extends Page {
             'titleGallery' => 'Фото машин для офисного переезда',
             'titleMap' => 'Расчет стоимости переезда офиса в #нас-пункт-пп#',
             'reviewsServiceTitle' => 'Офисный переезд',
-            'isNewService' => true
+            'isNewService' => true,
+            'adminPanelReviewsFormInput_usluga' => 'Переезды'
         ),
         'perevozka-mebeli' => array(
             'pageType' => 'service',
@@ -120,7 +126,8 @@ class PageMskServices extends Page {
             'titleGallery' => 'Фото машин для перевозки мебели',
             'titleMap' => 'Расчет стоимости перевозки мебели в #нас-пункт-пп#',
             'reviewsServiceTitle' => 'Перевозка мебели',
-            'isNewService' => true
+            'isNewService' => true,
+            'adminPanelReviewsFormInput_usluga' => 'Перевозка мебели'
         ),
         'perevozka-pianino' => array(
             'pageType' => 'service',
@@ -133,7 +140,8 @@ class PageMskServices extends Page {
             'titlePrice' => 'Цены на грузоперевозки',
             'titleGallery' => 'Фото перевозки пианино',
             'titleMap' => 'Расчет стоимости перевозки пианино в #нас-пункт-пп#',
-            'reviewsServiceTitle' => 'Перевозка пианино'
+            'reviewsServiceTitle' => 'Перевозка пианино',
+            'adminPanelReviewsFormInput_usluga' => 'Перевозка пианино'
         ),
         'default' => array(
             'pageType' => 'town',
@@ -146,7 +154,8 @@ class PageMskServices extends Page {
             'titlePrice' => '',
             'titleGallery' => 'Фото машин из нашего парка',
             'titleMap' => 'Расчет стоимости перевозки по #нас-пункт-пд#',
-            'reviewsServiceTitle' => 'Транспортные услуги'
+            'reviewsServiceTitle' => 'Транспортные услуги',
+            'adminPanelReviewsFormInput_usluga' => 'Транспортные услуги'
         ),
     );
 
@@ -418,10 +427,44 @@ class PageMskServices extends Page {
         //          Все районы
         //          все нас пункты (иерархически)
 
-
         switch ($page->page_type) {
+            case 'town':
+                // ЭТО РАБОТАЕТ ТОЛЬКО ДЛЯ МОСКВЫ
+                // В МОСКВЕ ВООБЩН ВСЕ С ТИПОМ town, сделано было для удобства,
+                // чтобы показывать сразу услуги
+                // ведь у элементов МОСКВЫ нет дочерних элементов
+                if ($page->id >= 10000) {
+                    switch ($page->type) {
+                        // ДЛЯ ЦАО и РАЙОНОВ
+                        case 'okrug':
+                        case 'raion':
+                            $this->buildReviewsOnLeftBlock(array(
+                                'townId' => 10000,
+                                'service' => 'Транспортные услуги'
+                            ));
+                            break;
+                        // ДЛЯ ГОРОДОВ (4 штуки)
+                        case 'town':
+                            $this->buildReviewsOnLeftBlock(array(
+                                'townId' => $page->id,
+                                'service' => 'Транспортные услуги'
+                            ));
+                            break;
+                    }
+                }
+
+                // ЭТО РАБОТАЕТ ТОЛЬКО НА МОСКОВСКОЙ ОБЛАСТИ
+                if ($page->id < 10000) {
+                    $this->buildReviewsOnLeftBlock(array(
+                        'townId' => $page->id,
+                        'service' => 'Транспортные услуги'
+                    ));
+                }
+                break;
+
             case 'connected':
-                // Транспортные услуги:
+                // ЭТО РАБОТАЕТ ТОЛЬКО НА МОСКОВСКОЙ ОБЛАСТИ
+                // Транспортные услуги :
                 // Если выбрана Москва - Это связующая страница connected везде + страница контента (+) /services/transportnye-uslugi/
                 // Если выбрана МО - на страницу только на https://dp.local/moskovskaya-oblast/
                 // Если выбран нас. пункт МО - то на его страницу connected
@@ -431,7 +474,26 @@ class PageMskServices extends Page {
                     'service' => 'Транспортные услуги'
                 ));
                 break;
+
             case 'service':
+                // Показываем отзывы привязанные к родителю (так как мы на услуге, а нам нужен нас. пункт)
+                $townId = $page->parent_id;
+
+                // ЭТО РАБОТАЕТ ТОЛЬКО ДЛЯ МОСКВЫ
+                // Если это страница услуги любого населенного пункта Москвы
+                if ($page->parent_id >= 10000) {
+                    // значит показываем в этой услуги отзывы со ВСЕЙ Москвы
+                    $townId = 10000;
+
+                    // НО!
+                    // Если это города Москвы (их всего 4), показываем отзывы именно этих городов
+                    $parentPageType = Database::query("select type from pages where id = $page->parent_id", 'fetch');
+                    if ($parentPageType['type'] == 'town') {
+                        $townId = $page->parent_id;
+                    }
+                }
+
+
                 switch (Core::getUrl()->lastUriPart) {
                     case 'gruzoperevozki':
                         // Грузоперевозки
@@ -440,7 +502,7 @@ class PageMskServices extends Page {
                         // Если выбран нас. пункт МО - то на его страницу
                         // Если выбран район МО - то на его страницу
                         $this->buildReviewsOnLeftBlock(array(
-                            'townId' => $page->parent_id >= 10000 ? 10000 : $page->parent_id, // (+ на всех районах и округах Москвы)
+                            'townId' => $townId, // (+)
                             'service' => 'Грузоперевозки'
                         ));
                         break;
@@ -457,7 +519,7 @@ class PageMskServices extends Page {
                         //  Если выбран нас. пункт МО - то на его страницу
                         //  Если выбран район МО - то на его страницу
                         $this->buildReviewsOnLeftBlock(array(
-                            'townId' => $page->parent_id >= 10000 ? 10000 : $page->parent_id, // (+ на всех районах и округах Москвы)
+                            'townId' => $townId, // (+ на всех районах и округах Москвы)
                             'service' => 'Переезды'
                         ));
                         break;
@@ -469,7 +531,7 @@ class PageMskServices extends Page {
                         //  Если выбран нас. пункт МО - то на его страницу
                         //  Если выбран район МО - то на его страницу
                         $this->buildReviewsOnLeftBlock(array(
-                            'townId' => $page->parent_id >= 10000 ? 10000 : $page->parent_id, // (+ на всех районах и округах Москвы)
+                            'townId' => $townId, // (+ на всех районах и округах Москвы)
                             'service' => 'Вывоз мебели'
                         ));
                         break;
@@ -481,7 +543,7 @@ class PageMskServices extends Page {
                         //  Если выбран нас. пункт МО - то на его страницу
                         //  Если выбран район МО - то на его страницу
                         $this->buildReviewsOnLeftBlock(array(
-                            'townId' => $page->parent_id >= 10000 ? 10000 : $page->parent_id, // (+ на всех районах и округах Москвы)
+                            'townId' => $townId, // (+ на всех районах и округах Москвы)
                             'service' => 'Перевозка пианино'
                         ));
                         break;
@@ -492,7 +554,7 @@ class PageMskServices extends Page {
                         //  Если выбран нас. пункт МО - то на его страницу
                         //  Если выбран район МО - то на его страницу
                         $this->buildReviewsOnLeftBlock(array(
-                            'townId' => $page->parent_id >= 10000 ? 10000 : $page->parent_id, // (+ на всех районах и округах Москвы)
+                            'townId' => $townId, // (+ на всех районах и округах Москвы)
                             'service' => 'Грузовое такси'
                         ));
                         break;
@@ -504,7 +566,7 @@ class PageMskServices extends Page {
                         //  Если выбран нас. пункт МО - то на его страницу
                         //  Если выбран район МО - то на его страницу
                         $this->buildReviewsOnLeftBlock(array(
-                            'townId' => $page->parent_id >= 10000 ? 10000 : $page->parent_id, // (+ на всех районах и округах Москвы)
+                            'townId' => $townId, // (+ на всех районах и округах Москвы)
                             'service' => 'Перевозка мебели'
                         ));
                         break;
@@ -548,7 +610,6 @@ class PageMskServices extends Page {
                 // Дополнительные услуги для списка услуг (используя parent_id)
                 Core::getSmarty()->assign('similarServices', $this->getSimilarServices($page->parent_id));
                 Core::getSmarty()->assign('cars', Cars::getCars());
-
                 break;
             case 'connected':
             case 'town':
@@ -571,8 +632,6 @@ class PageMskServices extends Page {
         $this->updateBreadcrumb($page);
 
         // Формируем отзывы слева в блоке
-        // $reviews = Database::query("select * from feedback where town_start_id = $page->id AND usluga = 'Транспортные услуги'");
-        // Core::log($reviews);
         $this->setReviewsOnLeftBlock($page);
 
         Core::getSmarty()->assign('mapPath', str_replace('*', ',', $page->breadcrumb_names));

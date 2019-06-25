@@ -36,7 +36,7 @@ class PageContent extends Page {
                 // Транспортные услуги:
                 // Если выбрана Москва - Это связующая страница connected везде + страница контента /services/transportnye-uslugi/
                 $this->buildReviewsOnLeftBlock(array(
-                    'townId' => 1, // Московская область
+                    'townId' => 10000, // Московская область
                     'service' => 'Транспортные услуги'
                 ));
                 break;
