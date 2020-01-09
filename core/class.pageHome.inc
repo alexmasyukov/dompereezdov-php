@@ -95,6 +95,9 @@ class PageHome extends Page {
             . $homeBlocks[2][1]
             . '</div><div class="cleafix"></div>', $page->text);
 
+        // Заменяем телефоны
+        $page->text = self::replacePhones($page->text);
+
         // Формируем отзывы слева
         $this->buildReviewsOnLeftBlock(array(
             'townId' => 10000, // Если выбрана Москва (id 10000) отображаются на главной странице https://dp.local/

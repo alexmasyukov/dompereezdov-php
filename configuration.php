@@ -1,29 +1,29 @@
 <?php
 /* ---------- Конфигурация ------------- */
 
-$db_server = 'localhost';
-$db_login = 'root';
-$db_password = 'root';
-$db_name = 'dp';
-
 //$db_server = 'localhost';
-//$db_login = 'u0339017_default';
-//$db_password = '6d3!K8jk';
-//$db_name = 'u0339017_default';
-//
-$databaseConfig = (object)array(
-    'server' => 'localhost',
-    'name' => 'dp',
-    'login' => 'root',
-    'password' => 'root'
-);
+//$db_login = 'root';
+//$db_password = 'root';
+//$db_name = 'dp';
+
+$db_server = 'localhost';
+$db_login = 'u0339017_default';
+$db_password = '6d3!K8jk';
+$db_name = 'u0339017_default';
 //
 //$databaseConfig = (object)array(
 //    'server' => 'localhost',
-//    'name' => 'u0339017_default',
-//    'login' => 'u0339017_default',
-//    'password' => '6d3!K8jk'
+//    'name' => 'dp',
+//    'login' => 'root',
+//    'password' => 'root'
 //);
+//
+$databaseConfig = (object)array(
+    'server' => 'localhost',
+    'name' => 'u0339017_default',
+    'login' => 'u0339017_default',
+    'password' => '6d3!K8jk'
+);
 
 
 // Отправка зявкок
@@ -37,8 +37,8 @@ $phone_to_sms = '';
 
 $phones = (object)array(
     'phone1' => (object)array(
-        'text' => '+7 (926) 803-35-30',
-        'number' => '+79268033530'
+        'text' => '+7 (926) 792-01-05', // заменили 09.01.2019 этот номер +7 (926) 803-35-30
+        'number' => '+79267920105' // заменили 09.01.2019 этот номер +79268033530
     ),
     'phone2' => (object)array(
         'text' => '+7 (495) 978-78-09',
