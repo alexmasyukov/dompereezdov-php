@@ -35,6 +35,10 @@ class Photogallery {
         ', 'withCount');
 
         if ($images->rowCount > 0) {
+            foreach ($images->result as &$item) {
+                $item['small_img'] = str_replace('../../..//', '/', $item['small_img']);
+                $item['big_img'] = str_replace('../../..//', '/', $item['big_img']);
+            }
             return array_chunk($images->result, 4);
         }
         return array();
