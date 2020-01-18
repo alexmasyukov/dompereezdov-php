@@ -8,11 +8,11 @@ Options +FollowSymlinks
 
 RewriteEngine On
 
-#RewriteCond %{REQUEST_URI} !^/cms.*$
-#
-#RewriteCond %{SERVER_PORT} !^443$ [OR]
-#RewriteCond %{HTTP_HOST} ^dompereezdov.ru
-#RewriteRule (.*) https://www.dompereezdov.ru/$1 [R=301,L]
+RewriteCond %{REQUEST_URI} !^/cms.*$
+
+RewriteCond %{SERVER_PORT} !^443$ [OR]
+RewriteCond %{HTTP_HOST} ^dompereezdov.ru
+RewriteRule (.*) https://www.dompereezdov.ru/$1 [R=301,L]
 
 
 RewriteCond %{REQUEST_FILENAME} !-f
