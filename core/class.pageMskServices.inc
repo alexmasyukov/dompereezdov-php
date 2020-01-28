@@ -390,11 +390,14 @@ class PageMskServices extends Page {
             $page->$key = mb_str_replace('#p_tv#', $page->p_tv, $page->$key);
             $page->$key = mb_str_replace('#p_pr#', $page->p_pr, $page->$key);
 
-            $page->$key = mb_str_replace('#p_ro_with_type#', $page->p_ro_with_type, $page->$key);
-            $page->$key = mb_str_replace('#p_da_with_type#', $page->p_da_with_type, $page->$key);
-            $page->$key = mb_str_replace('#p_ve_with_type#', $page->p_ve_with_type, $page->$key);
-            $page->$key = mb_str_replace('#p_tv_with_type#', $page->p_tv_with_type, $page->$key);
-            $page->$key = mb_str_replace('#p_pr_with_type#', $page->p_pr_with_type, $page->$key);
+            // Так как нет в БД значений для всех переменных с with_type, заменяем их вместо
+            //    $page->$key = mb_str_replace('#p_ro_with_type#', $page->p_ro_with_type, $page->$key);
+            // на
+            $page->$key = mb_str_replace('#p_ro_with_type#', $page->p_ro, $page->$key);
+            $page->$key = mb_str_replace('#p_da_with_type#', $page->p_da, $page->$key);
+            $page->$key = mb_str_replace('#p_ve_with_type#', $page->p_ve, $page->$key);
+            $page->$key = mb_str_replace('#p_tv_with_type#', $page->p_tv, $page->$key);
+            $page->$key = mb_str_replace('#p_pr_with_type#', $page->p_pr, $page->$key);
 
             $page->$key = mb_str_replace('#zn_1#', $page->zn_1, $page->$key);
             $page->$key = mb_str_replace('#zn_2#', $page->zn_2, $page->$key);
@@ -406,7 +409,6 @@ class PageMskServices extends Page {
             $page->$key = mb_str_replace('#etnohoronim_mn_p_da#', $page->etnohoronim_mn_p_da, $page->$key);
 
             $page->$key = Page::replacePhones($page->$key);
-            //            $page->$key = mb_str_replace('##', $page->, $page->$key);
         }
         return $page;
     }
